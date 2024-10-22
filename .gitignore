@@ -404,3 +404,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 
+FoodDeliver_API/FoodDeliver_API/appsettings.json
+/FoodDeliver_API/FoodDeliver_API/Migrations
