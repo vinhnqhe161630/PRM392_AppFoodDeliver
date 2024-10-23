@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recycleviewLists=new ArrayList<recycleview_list>();
-        ApiService apiService = RetrofitClient.getClient("http://10.0.2.2:7121/api/").create(ApiService.class);
+        ApiService apiService = RetrofitClient.getClient("https://differentaquacar23.conveyor.cloud/api/").create(ApiService.class);
         Call<List<User>> call=apiService.getUsers();
         TextView txt=findViewById(R.id.Title_);
 
@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
                     txt.setText(users.size() + " users fetched successfully");
                     // Handle the success case
                 } else {
-                    // Handle the error cas
+                    txt.setText("pppppp");
                 }
             }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
                 // Handle failure
-                recycleviewLists.add(new recycleview_list(R.drawable.phone,t.getMessage(),"120$"));
+                txt.setText("kk "+t.getMessage());
 
             }
         });
@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
         if(!listUser.isEmpty())
         {
-            txt.setText(listUser.size()+"oke");
+            //txt.setText(listUser.size()+"oke");
         }
         else{
-            txt.setText(" not oke");
+            //txt.setText(" not oke");
 
         }
     }
