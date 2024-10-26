@@ -67,7 +67,7 @@
 
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/emailEditText"
                 android:backgroundTint="@android:color/transparent"
                 android:textColor="#545454"
                 android:hint="appmelodies@mail.com"
@@ -106,7 +106,7 @@
         android:layout_height="45dp">
 
         <EditText
-            android:id="@+id/passwordd"
+            android:id="@+id/passwordEditText"
             android:textColor="#545454"
             android:hint="***********"
             android:layout_marginTop="3dp"
@@ -154,9 +154,9 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/loginbtn"
+            android:id="@+id/loginButton"
             android:letterSpacing="0.1"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:layout_marginTop="80sp"
             android:layout_gravity="center"
             android:textColor="@color/white"
