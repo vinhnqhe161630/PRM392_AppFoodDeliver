@@ -14,6 +14,8 @@ import com.example.fooddelivery_app.retrofit.apis.AuthApiService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,14 +133,18 @@ public LiveData<String> ForgotPassword(String email) {
 }
     private void handleSuccessResponse(Response<ResponseBody> response, MutableLiveData<String> liveData) {
         try {
-            String responseBody = response.body().toString();
-            JSONObject jsonObject = new JSONObject(responseBody);
-            String token = jsonObject.getString("token");
+            String responseBody = response.body().string(); // Gọi .string() để lấy nội dung
+
+            JSONObject jsonObject = new JSONObject(responseBody); // Phân tích cú pháp JSON
+            String token = jsonObject.getString("token"); // Lấy token
             liveData.postValue(token); // Cập nhật token vào liveData
         } catch (JSONException e) {
             e.printStackTrace();
-            liveData.postValue("Error parsing response");
-        }
+            liveData.postValue("Error parsing response"+ e.getMessage());
+        }  catch (IOException e) {
+        e.printStackTrace();
+        liveData.postValue("Error reading response body: " + e.getMessage());
+    }
     }
 
     private void handleErrorResponse(Response<ResponseBody> response, MutableLiveData<String> liveData) {

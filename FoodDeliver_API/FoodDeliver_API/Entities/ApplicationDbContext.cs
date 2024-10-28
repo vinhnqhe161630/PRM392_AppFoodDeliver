@@ -27,13 +27,19 @@ namespace FoodDeliver_API.Models
       .HasForeignKey(c => c.UserId)
       .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Cart>()
-                .HasOne(c => c.Shop)
-                .WithMany()
-                .HasForeignKey(c => c.ShopId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Order>()
+               .HasOne(o => o.Account) // Liên kết với UserId
+               .WithMany(a => a.Orders)
+               .HasForeignKey(o => o.UserId)
+               .OnDelete(DeleteBehavior.Cascade); // Cascade xóa nếu tài khoản người dùng bị xóa
 
-            modelBuilder.Entity<Cart>()
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Shop) // Liên kết với ShopId
+                .WithMany()
+                .HasForeignKey(o => o.ShopId)
+                .OnDelete(DeleteBehavior.NoAction); // Không xóa cascade nếu shop bị xóa
+        
+        modelBuilder.Entity<Cart>()
                 .HasOne(c => c.Food)
                 .WithMany()
                 .HasForeignKey(c => c.FoodId)
