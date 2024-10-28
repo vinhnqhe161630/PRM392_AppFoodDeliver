@@ -406,3 +406,4 @@ FodyWeavers.xsd
 
 FoodDeliver_API/FoodDeliver_API/appsettings.json
 /FoodDeliver_API/FoodDeliver_API/Migrations
+.gradle/
