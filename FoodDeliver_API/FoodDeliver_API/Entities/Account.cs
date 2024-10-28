@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using FoodDeliver_API.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDeliver_API.Models
 {
@@ -18,5 +19,7 @@ namespace FoodDeliver_API.Models
        public ICollection<Food>? Foods { get; set; } = new List<Food>();
         public ICollection<Order>? Orders { get; set; } = new List<Order>();
         public ICollection<Comment>? Comments { get; set; } = new List<Comment>();
+
+        public ICollection<Cart>? Carts { get; set; } = new List<Cart>();
     }
 }

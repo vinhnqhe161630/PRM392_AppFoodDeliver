@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using FoodDeliver_API.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDeliver_API.Models
 {
@@ -18,5 +19,6 @@ namespace FoodDeliver_API.Models
         [ForeignKey("AccountID")] public virtual Account? Account { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; } = new List<OrderDetail>();
         public ICollection<Comment>? Comments { get; set; } = new List<Comment>();
+        public ICollection<Cart>? Carts { get; set; } = new List<Cart>();
     }
 }

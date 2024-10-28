@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FoodDeliver_API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDeliver_API.Models
 {
@@ -9,6 +10,7 @@ namespace FoodDeliver_API.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         // Constructor for injecting options
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -19,7 +21,23 @@ namespace FoodDeliver_API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Cart>()
+      .HasOne(c => c.Account)
+      .WithMany()
+      .HasForeignKey(c => c.UserId)
+      .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Cart>()
+                .HasOne(c => c.Shop)
+                .WithMany()
+                .HasForeignKey(c => c.ShopId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Cart>()
+                .HasOne(c => c.Food)
+                .WithMany()
+                .HasForeignKey(c => c.FoodId)
+                .OnDelete(DeleteBehavior.Restrict);
             // Account to Food (One-to-Many)
             modelBuilder.Entity<Account>()
                 .HasMany(a => a.Foods)
