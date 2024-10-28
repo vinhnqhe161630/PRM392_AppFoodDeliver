@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FoodDeliver_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +10,21 @@ namespace FoodDeliver_API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IMapper _mapper;
-        public OrderController(IMapper mapper)
+        private readonly OrderService _orderService;
+        public OrderController(IMapper mapper, OrderService orderService)
         {
             _mapper = mapper;
+            _orderService = orderService;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{userid}")]
         public async Task<IActionResult> getOrderbyUserId(Guid userid)
         {
-
-            return Ok();
+            var order = await _orderService.getOrderByUserId(userid);
+            return Ok(order);
         }
+
+       
+
     }
 }
