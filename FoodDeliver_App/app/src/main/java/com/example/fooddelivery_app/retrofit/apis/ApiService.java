@@ -12,8 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("Auth/Login") // endpoint của API đăng nhập
-    Call<ResponseBody> loginUser(@Body LoginModel loginRequest);
+
     @GET("User") // Change this to your real endpoint
     Call<List<User>> getUsers();
 }

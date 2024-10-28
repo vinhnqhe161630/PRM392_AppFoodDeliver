@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
+    private Button signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,43 +36,63 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        signupButton = findViewById(R.id.rgbtn);
 
         // Khởi tạo ViewModel
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        // Handle login button click
+        // Đăng ký Observer cho LiveData
+        loginViewModel.getSuccessLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String result) {
+                // Xử lý khi đăng nhập thành công
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("auth_token", result);
+                editor.apply();
 
+                Toast.makeText(LoginActivity.this, "Login Successfull ", Toast.LENGTH_SHORT).show();
+                // Chuyển hướng đến Activity chính (MainActivity)
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Kết thúc Activity đăng nhập
+            }
+        });
 
+        loginViewModel.getErrorLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String error) {
+                // Hiển thị lỗi nếu có
+                Toast.makeText(LoginActivity.this, "Login "+error, Toast.LENGTH_SHORT).show();
+            }
+        });
         // Thiết lập OnClickListener cho nút đăng nhập
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                // Gọi phương thức login trong ViewModel
-                loginViewModel.login(email, password).observe(LoginActivity.this, new Observer<String>() {
-                    @Override
-                    public void onChanged(String token) {
-                        if (token != null && !token.equals("Login failed") && !token.startsWith("Error")) {
-                            // Save the token or user info to SharedPreferences
-                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("auth_token", token);
-                            editor.apply();
 
-                            // Show success message
-                            Toast.makeText(LoginActivity.this, "Login successful: " , Toast.LENGTH_SHORT).show();
 
-                            // Redirect to MainActivity
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish(); // Optionally finish the LoginActivity to prevent returning to it
-                        } else {
-                            // Show error message
-                            Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    // Gọi phương thức đăng nhập từ ViewModel
+                    loginViewModel.login(email, password);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please input email and password", Toast.LENGTH_SHORT).show();
+                }
+
             }
+        });
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Chuyển hướng đến Activity chính (MainActivity)
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+                finish(); // Kết thúc Activity đăng nhập
+            }
+
         });
     }
 }

@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.repository.AuthRepository.AuthRepository;
 
-public class LoginViewModel extends ViewModel {
-    private AuthRepository loginRepository;
+public class ForgotPassViewModel  extends ViewModel {
+
+    private AuthRepository authRepository;
     private MutableLiveData<String> successLiveData = new MutableLiveData<>();
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
-    public LoginViewModel() {
-        loginRepository = new AuthRepository();
+    public ForgotPassViewModel() {
+        authRepository = new AuthRepository();
     }
     public LiveData<String> getSuccessLiveData() {
         return successLiveData;
@@ -20,8 +21,9 @@ public class LoginViewModel extends ViewModel {
     public LiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
-    public void login(String email, String password) {
-       loginRepository.login(email, password).observeForever(result -> {
+
+    public void forgotPass(String email) {
+        authRepository.ForgotPassword(email).observeForever(result -> {
             if (result.startsWith("Fail") || result.startsWith("Error")) {
                 errorLiveData.setValue(result);
             } else {

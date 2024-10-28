@@ -71,6 +71,60 @@ namespace FoodDeliver_API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            try
+            {
+
+                if (!ModelState.IsValid)
+                    return BadRequest(new { message = "Invalid change password request" });
+
+                //Check old and new pass are null
+                if (string.IsNullOrEmpty(model.NewPassword) || string.IsNullOrEmpty(model.OldPassword) || string.IsNullOrEmpty(model.Token))
+                    return BadRequest(new { message = "Password and token cannot be empty" });
+                await _authService.ChangePasswordAsync(model.Token, model.NewPassword, model.OldPassword);
+
+                return Ok(new { message = "Password Changed successfully" });
+            }
+            catch (Exception ex)
+            {
+                // Handle potential errors
+                return BadRequest(new { message = ex.Message });
+            }
+
+        }
+
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            try
+            {
+                IActionResult response;
+
+                var isUser = await _authService.IsUser(email);
+
+                if (!isUser)
+                {
+                    response = NotFound(new { message = "Email not found" });
+                }
+                else
+                {
+
+                   
+
+                  await  _authService.SendResetPasswordEmail(email);
+                    response = Ok(new { message = "Email sent" });
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Handle potential errors
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
 
 

@@ -6,13 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.repository.AuthRepository.AuthRepository;
 
-public class LoginViewModel extends ViewModel {
-    private AuthRepository loginRepository;
+public class SignUpViewModel extends ViewModel {
+    private AuthRepository authRepository;
     private MutableLiveData<String> successLiveData = new MutableLiveData<>();
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
-    public LoginViewModel() {
-        loginRepository = new AuthRepository();
-    }
     public LiveData<String> getSuccessLiveData() {
         return successLiveData;
     }
@@ -20,13 +17,16 @@ public class LoginViewModel extends ViewModel {
     public LiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
-    public void login(String email, String password) {
-       loginRepository.login(email, password).observeForever(result -> {
-            if (result.startsWith("Fail") || result.startsWith("Error")) {
-                errorLiveData.setValue(result);
-            } else {
-                successLiveData.setValue(result);
-            }
-        });
+    public SignUpViewModel() {
+        this.authRepository = new AuthRepository();
+    }
+    public void SignUp(String name,String email, String password){
+         authRepository.SignUp(name,email,password ).observeForever(result -> {
+             if (result.startsWith("Fail") || result.startsWith("Error")) {
+                 errorLiveData.setValue(result);
+             } else {
+                 successLiveData.setValue(result);
+             }
+         });
     }
 }
