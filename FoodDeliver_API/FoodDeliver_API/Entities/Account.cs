@@ -1,4 +1,6 @@
-﻿namespace FoodDeliver_API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDeliver_API.Models
 {
     public class Account
     {
@@ -13,7 +15,8 @@
         public bool Status { get; set; }
 
         // Navigation property
-        public ICollection<Food>? Foods { get; set; } = new List<Food>();
+       public ICollection<Food>? Foods { get; set; } = new List<Food>();
+        public ICollection<Order>? Orders { get; set; } = new List<Order>();
         public ICollection<Comment>? Comments { get; set; } = new List<Comment>();
     }
 }

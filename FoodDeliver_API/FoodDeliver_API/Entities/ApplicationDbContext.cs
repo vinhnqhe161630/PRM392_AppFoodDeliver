@@ -47,6 +47,11 @@ namespace FoodDeliver_API.Models
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderID)
                 .OnDelete(DeleteBehavior.Cascade); // Allow cascading deletes if needed
+            modelBuilder.Entity<Order>()
+       .HasOne(o => o.Account)
+       .WithMany()
+       .HasForeignKey(o => o.UserId)
+       .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.NoAction
 
             // Account to Comment (One-to-Many)
             modelBuilder.Entity<Comment>()

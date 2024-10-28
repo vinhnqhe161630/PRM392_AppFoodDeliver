@@ -1,4 +1,6 @@
-﻿namespace FoodDeliver_API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDeliver_API.Models
 {
     public class Comment
     {
@@ -11,8 +13,8 @@
         public Guid FoodID { get; set; }
 
         // Navigation properties
-        public Account User { get; set; }
-        public Food Food { get; set; }
+        [ForeignKey("UserID")] public Account? User { get; set; }
+        [ForeignKey("FoodID")] public Food? Food { get; set; }
     }
 
 }

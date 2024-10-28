@@ -1,4 +1,6 @@
-﻿namespace FoodDeliver_API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDeliver_API.Models
 {
     public class OrderDetail
     {
@@ -13,8 +15,8 @@
         public decimal Total { get; set; }
 
         // Navigation properties
-        public Order Order { get; set; }
-        public Food Food { get; set; }
+        [ForeignKey("OrderID")]  public virtual Order Order { get; set; }
+        [ForeignKey("FoodID")] public virtual Food Food { get; set; }
     }
 
 }
