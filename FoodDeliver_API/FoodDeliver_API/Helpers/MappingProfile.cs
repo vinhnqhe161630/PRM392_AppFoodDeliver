@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodDeliver_API.Models;
 using FoodDeliver_API.ViewModel.Auth;
+using FoodDeliver_API.ViewModel.Cart;
 using FoodDeliver_API.ViewModel.Order;
 
 namespace FoodDeliver_API.Helpers
@@ -15,7 +16,9 @@ namespace FoodDeliver_API.Helpers
             CreateMap<SignUpModel, Account>();
 
             CreateMap<AddOrder, Order>();
-            CreateMap<AddOrderDetails, OrderDetail>();
+			CreateMap<AddCart, Cart>();
+
+			CreateMap<AddOrderDetails, OrderDetail>();
         }
     }
     
