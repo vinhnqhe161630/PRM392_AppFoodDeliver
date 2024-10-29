@@ -1,23 +1,15 @@
-<<<<<<< HEAD
-﻿using Microsoft.AspNetCore.Http;
-=======
+
 ﻿using AutoMapper;
 using FoodDeliver_API.Entities;
 using FoodDeliver_API.Services;
 using FoodDeliver_API.ViewModel.Cart;
 using FoodDeliver_API.ViewModel.Order;
->>>>>>> f62dac57c6416ca83d517f06e7dcf0c005f6c8f1
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDeliver_API.Controllers
 {
-<<<<<<< HEAD
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CartController : ControllerBase
-    {
-    }
-=======
+
 	[Route("api/[controller]")]
 	[ApiController]
 	public class CartController : Controller
@@ -46,5 +38,5 @@ namespace FoodDeliver_API.Controllers
 			return Ok("Add ok");
 		}
 	}
->>>>>>> f62dac57c6416ca83d517f06e7dcf0c005f6c8f1
+
 }

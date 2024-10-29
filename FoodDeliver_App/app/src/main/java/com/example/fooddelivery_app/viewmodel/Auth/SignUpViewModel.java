@@ -1,4 +1,4 @@
-package com.example.fooddelivery_app.viewmodel;
+package com.example.fooddelivery_app.viewmodel.Auth;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

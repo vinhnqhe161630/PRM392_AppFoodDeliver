@@ -1,4 +1,4 @@
-package com.example.fooddelivery_app.viewmodel;
+package com.example.fooddelivery_app.viewmodel.Auth;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.repository.AuthRepository.AuthRepository;
 
-public class ChangePasswordViewModel extends ViewModel {
-    private AuthRepository authRepository;
+public class LoginViewModel extends ViewModel {
+    private AuthRepository loginRepository;
     private MutableLiveData<String> successLiveData = new MutableLiveData<>();
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
-    public ChangePasswordViewModel() {
-        authRepository = new AuthRepository();
+
+    public LoginViewModel() {
+        loginRepository = new AuthRepository();
     }
+
     public LiveData<String> getSuccessLiveData() {
         return successLiveData;
     }
@@ -21,8 +23,8 @@ public class ChangePasswordViewModel extends ViewModel {
         return errorLiveData;
     }
 
-    public void changePassword(String token,String oldpass, String newpass) {
-        authRepository.ChangePassword(token,oldpass,newpass).observeForever(result -> {
+    public void login(String email, String password) {
+       loginRepository.login(email, password).observeForever(result -> {
             if (result.startsWith("Fail") || result.startsWith("Error")) {
                 errorLiveData.setValue(result);
             } else {

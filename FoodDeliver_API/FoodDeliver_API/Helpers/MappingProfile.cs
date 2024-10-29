@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using FoodDeliver_API.Entities;
 using FoodDeliver_API.ViewModel.Auth;
-using FoodDeliver_API.ViewModel.Cart;
 using FoodDeliver_API.ViewModel.Order;
+using FoodDeliver_API.ViewModel.Shop;
 
 namespace FoodDeliver_API.Helpers
 {
@@ -16,9 +16,9 @@ namespace FoodDeliver_API.Helpers
             CreateMap<SignUpModel, Account>();
 
             CreateMap<AddOrder, Order>();
-			CreateMap<AddCart, Cart>();
+            CreateMap<AddOrderDetails, OrderDetail>();
 
-			CreateMap<AddOrderDetails, OrderDetail>();
+            CreateMap<Account, ShopViewModel>();
         }
     }
     

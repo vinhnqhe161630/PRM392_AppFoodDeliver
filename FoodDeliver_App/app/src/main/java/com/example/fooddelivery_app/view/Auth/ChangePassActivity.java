@@ -1,4 +1,4 @@
-package com.example.fooddelivery_app.view;
+package com.example.fooddelivery_app.view.Auth;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,15 +10,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery_app.R;
-import com.example.fooddelivery_app.viewmodel.ChangePasswordViewModel;
-import com.example.fooddelivery_app.viewmodel.ForgotPassViewModel;
+import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.viewmodel.Auth.ChangePasswordViewModel;
 
 public class ChangePassActivity extends AppCompatActivity {
 
