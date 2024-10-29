@@ -1,11 +1,9 @@
 package com.example.fooddelivery_app.repository.Shop;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddelivery_app.model.Shop.ShopViewModel;
+import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
-import com.example.fooddelivery_app.retrofit.apis.AuthApiService;
 import com.example.fooddelivery_app.retrofit.apis.ShopApiService;
 
 import org.json.JSONObject;
@@ -23,13 +21,13 @@ public class ShopRepository {
         shopApiService = RetrofitUtility.getClient().create(ShopApiService.class);
     }
 
-    public LiveData<List<ShopViewModel>> getAllShops() {
-        MutableLiveData<List<ShopViewModel>> liveData = new MutableLiveData<>();
-        Call<List<ShopViewModel>> call = shopApiService.getAllShops();
+    public MutableLiveData<List<Shop>> getAllShops() {
+        MutableLiveData<List<Shop>> liveData = new MutableLiveData<>();
+        Call<List<Shop>> call = shopApiService.getAllShops();
 
-        call.enqueue(new Callback<List<ShopViewModel>>() {
+        call.enqueue(new Callback<List<Shop>>() {
             @Override
-            public void onResponse(Call<List<ShopViewModel>> call, retrofit2.Response<List<ShopViewModel>> response) {
+            public void onResponse(Call<List<Shop>> call, retrofit2.Response<List<Shop>> response) {
                 if (response.isSuccessful()) {
                     liveData.postValue(response.body());
                 } else {
@@ -38,7 +36,7 @@ public class ShopRepository {
             }
 
             @Override
-            public void onFailure(Call<List<ShopViewModel>> call, Throwable t) {
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
                 // Xử lý khi có lỗi không kết nối được tới API
                 liveData.postValue(null);  // Hoặc gửi thông báo lỗi
                 t.printStackTrace(); // Hoặc log lỗi, hoặc xử lý thêm

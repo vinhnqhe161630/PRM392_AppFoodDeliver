@@ -1,7 +1,7 @@
 ﻿using FoodDeliver_API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodDeliver_API.Models
+namespace FoodDeliver_API.Entities
 {
     public class ApplicationDbContext : DbContext
     {

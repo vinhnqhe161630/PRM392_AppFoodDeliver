@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FoodDeliver_API.Services;
 using AutoMapper;
 using FoodDeliver_API.ViewModel.Auth;
-using FoodDeliver_API.Models;
+using FoodDeliver_API.Entities;
 
 namespace FoodDeliver_API.Controllers
 {

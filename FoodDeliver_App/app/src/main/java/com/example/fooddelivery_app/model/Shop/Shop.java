@@ -2,7 +2,7 @@ package com.example.fooddelivery_app.model.Shop;
 
 import java.util.UUID;
 
-public class ShopViewModel {
+public class Shop {
 
     private UUID id;
     private String name;
@@ -16,12 +16,12 @@ public class ShopViewModel {
     private boolean status;
     private int totalOrder;
 
-    public ShopViewModel() {
+    public Shop() {
     }
 
-    public ShopViewModel(UUID id, String name, String email, String pass, String img,
-                         String phone, String address,
-                         double vote, String role, boolean status, int totalOrder) {
+    public Shop(UUID id, String name, String email, String pass, String img,
+                String phone, String address,
+                double vote, String role, boolean status, int totalOrder) {
         this.id = id;
         this.name = name;
         this.email = email;

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FoodDeliver_API.Entities;
 using FoodDeliver_API.Services;
 using FoodDeliver_API.ViewModel.Order;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,7 @@ namespace FoodDeliver_API.Controllers
         [HttpPost("addOrder")]
         public async Task<IActionResult> createOrder(AddOrder addorder)
         {
-            var order = _mapper.Map <Order>(addorder);
+            var order = _mapper.Map<Order>(addorder);
 
             await _orderService.createOrder(order);
         

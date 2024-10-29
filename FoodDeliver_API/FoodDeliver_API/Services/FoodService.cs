@@ -1,5 +1,5 @@
 ﻿
-using FoodDeliver_API.Models;
+using FoodDeliver_API.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace FoodDeliver_API.Services
 {

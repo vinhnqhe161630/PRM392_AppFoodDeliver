@@ -1,5 +1,5 @@
 using FoodDeliver_API.Helpers;
-using FoodDeliver_API.Models;
+using FoodDeliver_API.Entities;
 using FoodDeliver_API.Services;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,4 +1,4 @@
-﻿using FoodDeliver_API.Models;
+﻿using FoodDeliver_API.Entities;
 using FoodDeliver_API.ViewModel.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
