@@ -1,5 +1,4 @@
-﻿using FoodDeliver_API.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDeliver_API.Entities
 {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FoodDeliver_API.Models
-{
-    public class Order
+namespace FoodDeliver_API.Entities
+{ 
+	public class Order
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
