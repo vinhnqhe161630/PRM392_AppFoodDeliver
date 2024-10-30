@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style cho TextView tiêu đề shop name -->
+    <style name="ShopNameText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Style cho TextView hiển thị tổng số đơn hàng -->
+    <style name="TotalOrderText">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Style cho LinearLayout bao quanh đánh giá và số sao -->
+    <style name="VoteContainer">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Style cho TextView chứa chữ 'Vote' -->
+    <style name="VoteText">
+        <item name="android:textColor">#00897B</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- Style cho RatingBar -->
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">0.1</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:progressTint">@android:color/holo_orange_light</item>
+        <item name="android:progressBackgroundTint">@android:color/darker_gray</item>
+    </style>
+
+
+
+
+</resources>

@@ -3,27 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="12dp"
+    android:background="#F0F0F0">
 
+    <!-- Tên Shop với phong cách đậm và kích thước lớn -->
     <TextView
         android:id="@+id/tvShopName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shop Name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textColor="#FF5722"
+        android:textStyle="bold"
+        android:paddingBottom="4dp" />
 
+    <!-- Tổng đơn hàng với phong cách trung bình và màu tối hơn -->
     <TextView
         android:id="@+id/tvTotalOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total Orders: "
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:paddingBottom="8dp" />
 
-    <TextView
-        android:id="@+id/tvVote"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vote: "
-        android:textSize="16sp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Text hiển thị số sao với màu xanh -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vote: "
+            android:textSize="16sp"
+            android:textColor="#00897B"
+            android:paddingEnd="8dp"/>
+
+        <!-- RatingBar với màu cam cho sao và màu xám cho nền -->
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.1"
+            android:isIndicator="true"
+            android:progressTint="#FFA000"
+            android:progressBackgroundTint="#BDBDBD"
+            style="@style/Widget.AppCompat.RatingBar.Small" />
+    </LinearLayout>
 </LinearLayout>

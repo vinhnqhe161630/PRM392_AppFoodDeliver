@@ -61,7 +61,7 @@
             android:textColor="#545454"
             android:backgroundTint="@android:color/transparent"
             android:layout_marginTop="3dp"
-            android:hint="App Melodies"
+            android:hint="Name"
             android:textSize="16sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"
@@ -99,7 +99,7 @@
             android:id="@+id/email"
             android:textColor="#545454"
             android:backgroundTint="@android:color/transparent"
-            android:hint="appmelodies@mail.com"
+            android:hint="Email"
             android:layout_marginTop="3dp"
             android:textSize="16sp"
             android:layout_marginLeft="20dp"
@@ -112,7 +112,7 @@
     </LinearLayout>
 
 
-        <TextView
+        <!--<TextView
             android:textColor="#545454"
             android:letterSpacing="0.02"
             android:textSize="10dp"
@@ -148,7 +148,7 @@
             android:layout_height="45dp"
             />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
         <TextView
             android:textColor="#545454"
