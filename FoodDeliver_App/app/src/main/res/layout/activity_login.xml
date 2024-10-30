@@ -178,17 +178,6 @@
             android:textColor="#9989FD" />
 
 
-        <Button
-            android:id="@+id/login_as_admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@android:color/transparent"
-            android:text="Login as admin"
-            android:textColor="#000000" />
-
     </LinearLayout>
 
 

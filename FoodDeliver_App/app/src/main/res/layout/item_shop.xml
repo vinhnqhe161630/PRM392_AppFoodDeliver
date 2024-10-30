@@ -1,78 +1,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_card_background"
+    android:clickable="true"
+    android:elevation="4dp"
+    android:focusable="true"
     android:orientation="horizontal"
-    android:padding="12dp"
+    android:padding="12dp">
 
-    android:background="@drawable/rounded_card_background">
-
-    <!-- Image of the Shop -->
+    <!-- Hình ảnh của Shop -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgShop"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="12dp"
-        app:shapeAppearanceOverlay="@style/RoundedCorners"
         android:scaleType="centerCrop"
-        android:src="@drawable/banner_new" />
+        android:src="@drawable/banner_new"
+        app:shapeAppearanceOverlay="@style/RoundedCorners" />
 
-    <!-- Vertical layout for Shop information -->
+    <!-- Layout dọc cho thông tin Shop -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <!-- Shop Name with bold style and large text size -->
+        <!-- Tên Shop với kiểu chữ đậm và kích thước lớn -->
         <TextView
             android:id="@+id/tvShopName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
             android:text="Shop Name"
-            android:textSize="20sp"
-            android:textColor="#8976FB"
-            android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:textColor="#4A148C"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <!-- Total Orders with medium style and darker color -->
+        <!-- Địa chỉ với kiểu chữ trung bình và màu sắc tối hơn -->
         <TextView
             android:id="@+id/tvTotalOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
             android:text="Address: "
-            android:textSize="10sp"
-            android:textColor="#333333"
-            android:paddingBottom="8dp" />
+            android:textColor="#616161"
+            android:textSize="14sp" />
 
         <LinearLayout
-            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <!-- Text showing number of stars with green color -->
+            <!-- Văn bản hiển thị số sao với màu xanh lá cây -->
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Vote: "
-                android:textSize="16sp"
-                android:textColor="#8976FB"
-                android:paddingEnd="8dp"/>
-
-            <!-- RatingBar with orange stars and gray background -->
-            <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4.5"
-                android:stepSize="0.1"
+                android:paddingEnd="8dp"
+                android:text="Vote: "
+                android:textColor="#FFA000"
+                android:textSize="16sp" />
+
+            <!-- RatingBar với sao màu cam và nền xám -->
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:isIndicator="true"
-                android:progressTint="#FFA000"
+                android:numStars="5"
                 android:progressBackgroundTint="#BDBDBD"
-                style="@style/Widget.AppCompat.RatingBar.Small" />
+                android:progressTint="#FFA000"
+                android:rating="4.5"
+                android:stepSize="0.1" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
