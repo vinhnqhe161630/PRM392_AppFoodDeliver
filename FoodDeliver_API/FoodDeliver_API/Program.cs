@@ -15,6 +15,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<CartService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

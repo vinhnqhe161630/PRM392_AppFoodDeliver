@@ -39,11 +39,12 @@ namespace FoodDeliver_API.Entities
                 .HasForeignKey(o => o.ShopId)
                 .OnDelete(DeleteBehavior.NoAction); // Không xóa cascade nếu shop bị xóa
         
-        modelBuilder.Entity<Cart>()
-                .HasOne(c => c.Food)
-                .WithMany()
-                .HasForeignKey(c => c.FoodId)
-                .OnDelete(DeleteBehavior.Restrict);
+       
+            modelBuilder.Entity<Cart>()
+        .HasOne(c => c.Food)
+        .WithMany(f => f.Carts)
+        .HasForeignKey(c => c.FoodId)
+        .OnDelete(DeleteBehavior.NoAction); // or whatever behavior fits your needs 
             // Account to Food (One-to-Many)
             modelBuilder.Entity<Account>()
                 .HasMany(a => a.Foods)

@@ -66,6 +66,7 @@
 
             <!-- RatingBar với sao màu cam và nền xám -->
             <RatingBar
+                android:id="@+id/tvVote"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
