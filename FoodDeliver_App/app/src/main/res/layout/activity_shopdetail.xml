@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -115,41 +116,133 @@
 
     <!-- Bottom Navigation -->
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Shop List"
-        android:textColor="#3E4A59"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_card_background"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <!-- Hình ảnh của Shop -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgShop"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner_new"
+            app:shapeAppearanceOverlay="@style/RoundedCorners" />
+
+        <!-- Layout dọc cho thông tin Shop -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Tên Shop với kiểu chữ đậm và kích thước lớn -->
+            <TextView
+                android:id="@+id/tvShopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="Shop Name"
+                android:textColor="#4A148C"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Địa chỉ với kiểu chữ trung bình và màu sắc tối hơn -->
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:text="Address: "
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:text="Email: "
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:text="Phone: "
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Văn bản hiển thị số sao với màu xanh lá cây -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:text="Vote: "
+                    android:textColor="#FFA000"
+                    android:textSize="16sp" />
+
+                <!-- RatingBar với sao màu cam và nền xám -->
+                <RatingBar
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressBackgroundTint="#BDBDBD"
+                    android:progressTint="#FFA000"
+                    android:rating="4.5"
+                    android:stepSize="0.1" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/productRecyclerView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        tools:ignore="NotSibling">
 
         <!-- Filter: Bán chạy -->
         <TextView
             android:id="@+id/filter_best_seller"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@drawable/filter_background"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_margin="4dp"
             android:text="Bán chạy"
             android:textColor="#FFFFFF"
-            android:background="@drawable/filter_background"
             android:textSize="14sp" />
 
         <!-- Filter: Đánh giá cao -->
@@ -157,13 +250,13 @@
             android:id="@+id/filter_high_rating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@drawable/filter_background"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_margin="4dp"
             android:text="Đánh giá"
             android:textColor="#FFFFFF"
-            android:background="@drawable/filter_background"
             android:textSize="14sp" />
 
         <!-- Filter: Giá thấp đến cao -->
@@ -171,13 +264,13 @@
             android:id="@+id/filter_low_to_high"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@drawable/filter_background"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_margin="4dp"
             android:text="Giá thấp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/filter_background"
             android:textSize="14sp" />
 
         <!-- Filter: Giá cao đến thấp -->
@@ -185,21 +278,21 @@
             android:id="@+id/filter_high_to_low"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@drawable/filter_background"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_margin="4dp"
             android:text="Giá cao"
             android:textColor="#FFFFFF"
-            android:background="@drawable/filter_background"
             android:textSize="14sp" />
     </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerView2"
-        android:layout_width="408dp"
-        android:layout_height="420dp"
+        android:layout_width="412dp"
+        android:layout_height="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent" />
