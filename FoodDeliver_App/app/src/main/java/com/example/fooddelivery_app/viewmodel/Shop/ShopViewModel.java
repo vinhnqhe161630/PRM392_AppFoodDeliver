@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.model.Shop.Shop;
-import com.example.fooddelivery_app.repository.Shop.ShopRepository;
+import com.example.fooddelivery_app.repository.ShopRepository;
 
 
 import java.util.List;

@@ -16,6 +16,10 @@
         android:theme="@style/Theme.FoodDelivery_App"
         tools:targetApi="31">
         <activity
+            android:name=".view.Order.OrderListActivity"
+            android:exported="false" />
+        <activity
+
             android:name=".view.Shop.ShopActivity"
             android:exported="false" />
         <activity

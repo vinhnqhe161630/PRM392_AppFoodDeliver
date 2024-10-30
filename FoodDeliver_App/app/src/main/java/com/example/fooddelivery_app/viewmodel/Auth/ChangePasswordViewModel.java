@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.fooddelivery_app.repository.AuthRepository.AuthRepository;
+import com.example.fooddelivery_app.repository.AuthRepository;
 
 public class ChangePasswordViewModel extends ViewModel {
     private AuthRepository authRepository;

@@ -1,4 +1,4 @@
-package com.example.fooddelivery_app.repository.Shop;
+package com.example.fooddelivery_app.repository;
 
 import androidx.lifecycle.MutableLiveData;
 

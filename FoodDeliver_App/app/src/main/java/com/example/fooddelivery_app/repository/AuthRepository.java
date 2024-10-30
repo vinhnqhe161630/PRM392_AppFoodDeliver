@@ -1,6 +1,4 @@
-package com.example.fooddelivery_app.repository.AuthRepository;
-
-import android.content.SharedPreferences;
+package com.example.fooddelivery_app.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -22,26 +22,68 @@ namespace FoodDeliver_API.Controllers
         [HttpGet("{userid}")]
         public async Task<IActionResult> getOrderbyUserId(Guid userid)
         {
-            var order = await _orderService.getOrderByUserId(userid);
-            return Ok(order);
+            try
+            {
+                var order = await _orderService.getOrderByUserId(userid);
+
+                var orderVm = _mapper.Map<List<OrderViewModel>>(order);
+
+                return Ok(orderVm);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpPost("addOrder")]
         public async Task<IActionResult> createOrder(AddOrder addorder)
         {
-            var order = _mapper.Map<Order>(addorder);
+            try
+            {
+                var order = _mapper.Map<Order>(addorder);
 
-            await _orderService.createOrder(order);
-        
-            return Ok("Add ok");
+                await _orderService.createOrder(order);
+
+                return Ok("Add ok");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpPost("addOrderDetail")]
         public async Task<IActionResult> createOrderDetail(OrderDetail orderDetail)
         {
-            await _orderService.createOrderDetail(orderDetail);
-        
-            return Ok("Add ok");
+            try
+            {
+                await _orderService.createOrderDetail(orderDetail);
+
+                return Ok("Add ok");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+        [HttpGet("getOrderDetail/{orderid}")]
+        public async Task<IActionResult> getOrderDetail(Guid orderid)
+        {
+            try
+            {
+                var orderDetail = await _orderService.getOrderDetail(orderid);
+                var orderDetailVm = _mapper.Map<List<OrderDetailsViewModel>>(orderDetail);
+                return Ok(orderDetailVm);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }
