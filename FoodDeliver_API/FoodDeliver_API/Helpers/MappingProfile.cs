@@ -19,8 +19,10 @@ namespace FoodDeliver_API.Helpers
             CreateMap<Account, ShopViewModel>();
             //Cart
             CreateMap<AddCart, Cart>();
-            CreateMap<Cart, CartModel>();
-
+            CreateMap<Cart, CartModel>()
+            .ForMember(dest => dest.FoodName, opt => opt.MapFrom(src => src.Food.Name))
+                        .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Food.Price))
+                    .ForMember(dest => dest.ShopName, opt => opt.MapFrom(src => src.Shop.Name));
             //Order
             CreateMap<AddOrder, Order>();
             CreateMap<AddOrderDetails, OrderDetail>();
