@@ -207,15 +207,15 @@
 
 
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:id="@+id/payment_layout"
                 android:layout_marginBottom="50dp"
                 android:padding="10dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content">-->
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -229,10 +229,10 @@
 
                     </Button>
 
-                </LinearLayout>
+                </LinearLayout>-->
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_marginTop="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -259,9 +259,9 @@
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_gravity="center_horizontal" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/new_name_tv"
                     android:textSize="15sp"
                     android:layout_margin="10dp"
@@ -301,9 +301,9 @@
                     android:text="Modern ui/ux, Admin pannel, Navigation, List unlimited products, easy to use dashboard and ore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </TextView>
+                </TextView>-->
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/new_price_tv"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -335,9 +335,9 @@
                     android:background="@drawable/rounded_corner_bg_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </Button>
+                </Button>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
 
