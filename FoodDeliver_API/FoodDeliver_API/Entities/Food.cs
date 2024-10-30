@@ -12,6 +12,7 @@ namespace FoodDeliver_API.Entities
         public string Img { get; set; }
         public bool Status { get; set; }
 
+   
         // Foreign Key
         public Guid AccountID { get; set; }
 

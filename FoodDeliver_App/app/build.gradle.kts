@@ -37,6 +37,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") // Use the latest
     implementation ("com.facebook.shimmer:shimmer:0.5.0")
     implementation ("com.google.android.material:material:1.7.0")
+    implementation(libs.glide)
+    implementation(libs.recyclerview)
+    annotationProcessor(libs.compiler)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
