@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodDeliver_API.Entities;
 using FoodDeliver_API.ViewModel.Auth;
+using FoodDeliver_API.ViewModel.Cart;
 using FoodDeliver_API.ViewModel.Order;
 using FoodDeliver_API.ViewModel.Shop;
 
@@ -16,6 +17,9 @@ namespace FoodDeliver_API.Helpers
             CreateMap<SignUpModel, Account>();
 
             CreateMap<Account, ShopViewModel>();
+            //Cart
+            CreateMap<AddCart, Cart>();
+            CreateMap<Cart, CartModel>();
 
             //Order
             CreateMap<AddOrder, Order>();

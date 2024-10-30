@@ -1,20 +1,20 @@
 ﻿USE [PRM392]
 GO
 
-INSERT INTO [dbo].[Accounts]
-           ([Id]
-           ,[Name]
-           ,[Email]
-           ,[Pass]
-           ,[Img]
-           ,[Phone]
-           ,[Address]
-           ,[Role]
-           ,[Status])
-     VALUES
-           (CAST('A0000001-0000-0000-0000-000000010001' AS uniqueidentifier), 'Alice Nguyen', '123@gmail.com', '$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', 'alice.png', '0123456789', '123 Main St, Hanoi', 'Shop', 1),
-           (CAST('A0000002-0000-0000-0000-000000000002' AS uniqueidentifier), 'Bob Tran', 'bob.tran@example.com', '$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', 'bob.png', '0987654321', '456 Park Ave, Ho Chi Minh City', 'User', 1),
-           (CAST('A0000003-0000-0000-0000-000000000003' AS uniqueidentifier), 'Charlie Le', 'charlie.le@example.com', '$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', 'charlie.png', '0112233445', '789 Market St, Da Nang', 'Admin', 1);
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000002-0000-0000-0000-000000000002', N'Bob Tran', N'bob.tran@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'bob.png', N'0987654321', N'456 Park Ave, Ho Chi Minh City', N'User', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000003-0000-0000-0000-000000000003', N'Charlie Le', N'charlie.le@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'charlie.png', N'0112233445', N'789 Market St, Da Nang', N'Admin', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000004-0000-0000-0000-000000000004', N'David Kim', N'david.kim@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'david.png', N'0123456780', N'321 Central Blvd, Hanoi', N'Shop', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000005-0000-0000-0000-000000000005', N'Eva Pham', N'eva.pham@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'eva.png', N'0987654320', N'654 Ocean Drive, Ho Chi Minh City', N'Shop', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000006-0000-0000-0000-000000000006', N'Frank Nguyen', N'frank.nguyen@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'frank.png', N'0112233446', N'987 Lake St, Da Nang', N'Shop', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000001-0000-0000-0000-000000010001', N'Alice Nguyen', N'123@gmail.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'alice.png', N'0123456789', N'123 Main St, Hanoi', N'Shop', 1)
+GO
+INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'60396245-056f-40be-3d0d-08dcf8f46b6c', N'khiem', N'khiemvu08@gmail.com', N'$2a$11$6hQbLtRQH.vtkKP0hEw5ze3rwVT0nwwXGHY7H7FX0oCCeBMtDAbX2',  N'alice.png', N'0123456789', N'123 Main St, Hanoi', N'User', 1)
+GO
 
 		   -- Mk : string
 INSERT INTO [dbo].[Accounts]
@@ -66,7 +66,18 @@ INSERT INTO [dbo].[Comments]
            (CAST('C0000005-0000-0000-0000-000000000005' AS uniqueidentifier), N'Mì Quảng rất ngon, sẽ quay lại!', 5, CAST('A0000002-0000-0000-0000-000000000002' AS uniqueidentifier), CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
 GO
 
-
+INSERT INTO [dbo].[Carts]
+           ([Id]
+           ,[UserId]
+           ,[ShopId]
+           ,[FoodId]
+           ,[Quantity])
+     VALUES
+           (NEWID()  -- Generates a new unique identifier
+           ,'60396245-056F-40BE-3D0D-08DCF8F46B6C'  -- UserId
+           ,'A0000001-0000-0000-0000-000000010001'  -- ShopId
+           ,'F0000004-0000-0000-0000-000000000004'  -- FoodId
+           ,10)  -- Quantity
 
 INSERT INTO [dbo].[Orders]
            ([Id]
