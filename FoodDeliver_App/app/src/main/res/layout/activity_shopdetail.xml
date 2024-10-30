@@ -245,20 +245,6 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
-        <!-- Filter: Đánh giá cao -->
-        <TextView
-            android:id="@+id/filter_high_rating"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/filter_background"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Đánh giá"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
         <!-- Filter: Giá thấp đến cao -->
         <TextView
             android:id="@+id/filter_low_to_high"
@@ -286,6 +272,21 @@
             android:text="Giá cao"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
+
+        <!-- Filter: Đánh giá cao -->
+        <TextView
+            android:id="@+id/filter_high_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_background"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Đánh giá"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
 
