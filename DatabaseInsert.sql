@@ -1,4 +1,4 @@
-﻿USE [PRM392_3]
+﻿USE [PRM392]
 GO
 
 INSERT INTO [dbo].[Accounts]

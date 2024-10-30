@@ -23,7 +23,7 @@ public class ShopActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_shopvoted);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewShops);
+        RecyclerView recyclerView = findViewById(R.id.productRecyclerViews);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
