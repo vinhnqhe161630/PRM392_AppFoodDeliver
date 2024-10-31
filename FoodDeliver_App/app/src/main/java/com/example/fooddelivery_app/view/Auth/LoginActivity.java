@@ -14,9 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery_app.R;
-import com.example.fooddelivery_app.view.MainActivity;
-import com.example.fooddelivery_app.view.Order.OrderListActivity;
-import com.example.fooddelivery_app.view.ShopActivity;
+import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.viewmodel.Auth.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Toast.makeText(LoginActivity.this, "Login Successfull ", Toast.LENGTH_SHORT).show();
                 // Chuyển hướng đến Activity chính (MainActivity)
-                Intent intent = new Intent(LoginActivity.this, ShopActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ShopDetailActivity.class);
                 startActivity(intent);
                 finish(); // Kết thúc Activity đăng nhập
             }

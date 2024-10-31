@@ -47,12 +47,12 @@
         <activity
             android:name=".view.Shop.ShopVotedActivity"
             android:exported="true" />
-        <activity
-            android:name=".view.ShopActivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.FoodDetailActivity"
-            android:exported="true" />
+
+
+        <activity android:name=".view.Shop.ShopDetailActivity"  android:exported="true" />
+        <activity android:name=".view.Shop.FoodDetailActivity"  android:exported="true" />
+
+
     </application>
 
 </manifest>

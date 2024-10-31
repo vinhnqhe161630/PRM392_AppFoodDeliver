@@ -18,20 +18,20 @@ namespace FoodDeliver_API.Services
             {
                 throw new Exception("User not found");
             }
-            return await _context.Orders.Include(o => o.Shop)
+            return await _context.Order.Include(o => o.Shop)
                 .Include(o => o.Account)
                 .Where(x => x.UserId == userId).ToListAsync();
         }   
 
         public async Task createOrder(Order order)
         {
-            _context.Orders.Add(order);
+            _context.Order.Add(order);
             await _context.SaveChangesAsync();
           
         }
         public async Task<Order> getOrder()
         {
-            Order o=_context.Orders.OrderByDescending(c=>c.OrderDate).First();
+            Order o=_context.Order.OrderByDescending(c=>c.OrderDate).First();
             return o;
 
         }
@@ -43,7 +43,7 @@ namespace FoodDeliver_API.Services
         }
         public async Task<List<OrderDetail>> getOrderDetail(Guid id)
         {
-            var order  = await _context.Orders.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var order  = await _context.Order.Where(x => x.Id == id).FirstOrDefaultAsync();
             if(order == null)
             {
               throw new Exception("Order not found");

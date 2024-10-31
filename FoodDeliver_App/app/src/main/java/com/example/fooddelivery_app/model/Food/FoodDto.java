@@ -21,6 +21,11 @@ public class FoodDto {
     private String img;
     @SerializedName("status")
     private boolean status;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
     @SerializedName("comments")
     private List<Comment> comments;
     private Account account;
@@ -33,6 +38,15 @@ public class FoodDto {
     public static class Account {
         private String name;
         private String img;
+        private String address;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
         // Getters for Account fields
         public String getName() {

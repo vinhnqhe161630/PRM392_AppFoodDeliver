@@ -20,12 +20,7 @@ public interface ApiService {
     @GET("User") // Change this to your real endpoint
     Call<List<User>> getUsers();
 
-    @GET("Foods/account/{accountId}")
-        Call<List<FoodDto>> getFoodsByAccountId(@Path("accountId") String accountId);
-    @GET("foods/{foodId}/details")
-    Call<FoodDto> getFoodDetail(@Path("foodId") String foodId);
 
-    @GET("comments/food/{foodId}") // Define the endpoint for fetching comments by foodId
-    Call<List<CommentDto>> getCommentsByFoodId(@Path("foodId") String foodId);
+
 
 }
