@@ -15,12 +15,14 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/productImageView"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="#E0E0E0"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
