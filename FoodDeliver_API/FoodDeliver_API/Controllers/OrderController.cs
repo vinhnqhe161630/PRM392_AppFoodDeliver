@@ -62,7 +62,7 @@ namespace FoodDeliver_API.Controllers
         //public decimal TotalAmount { get; set; }
         //public string Status { get; set; }
 
-        [HttpPost("checkOut/{id}")]
+        [HttpPost("checkOut/{userid}")]
         public async Task<IActionResult> checkOut(Guid userid)
         {
             try
@@ -80,9 +80,9 @@ namespace FoodDeliver_API.Controllers
                         addOrder.Status = "in process";
                         addOrder.UserId = userid;
                         addOrder.ShopId=acc.Id;
-                        addOrder.CustomerName = a.Name;
-                        addOrder.CustomerPhone = a.Phone;
-                        addOrder.CustomerAddress = a.Address;
+                        addOrder.CustomerName = a.Name==null?"":a.Name;
+                        addOrder.CustomerPhone = a.Phone == null ? "" : a.Phone;
+                        addOrder.CustomerAddress = a.Address == null ? "" : a.Address;
                         addOrder.TotalAmount=carts.Sum(c=>c.Quantity*c.Food.Price);
                         //create order
                         var order = _mapper.Map<Order>(addOrder);

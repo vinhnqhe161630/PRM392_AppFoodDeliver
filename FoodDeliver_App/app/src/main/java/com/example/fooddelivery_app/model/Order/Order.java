@@ -1,6 +1,5 @@
 package com.example.fooddelivery_app.model.Order;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Order {
@@ -10,16 +9,17 @@ public class Order {
     private String customerName;
     private String customerPhone;
     private String customerAddress;
-    private Date orderDate;
+    private String orderDate;
     private double totalAmount;
     private String status;
     private String username;
     private String shopname;
+    private String shopImg; // New field added
 
     public Order(UUID id, UUID userId, UUID shopId,
                  String customerName, String customerPhone, String customerAddress,
-                 Date orderDate, double totalAmount,
-                 String status, String username, String shopname) {
+                 String orderDate, double totalAmount,
+                 String status, String username, String shopname, String shopImg) {
         this.id = id;
         this.userId = userId;
         this.shopId = shopId;
@@ -31,6 +31,7 @@ public class Order {
         this.status = status;
         this.username = username;
         this.shopname = shopname;
+        this.shopImg = shopImg; // Initialize new field
     }
 
     public Order() {
@@ -84,11 +85,11 @@ public class Order {
         this.customerAddress = customerAddress;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -122,5 +123,13 @@ public class Order {
 
     public void setShopname(String shopname) {
         this.shopname = shopname;
+    }
+
+    public String getShopImg() {
+        return shopImg;
+    }
+
+    public void setShopImg(String shopImg) {
+        this.shopImg = shopImg;
     }
 }

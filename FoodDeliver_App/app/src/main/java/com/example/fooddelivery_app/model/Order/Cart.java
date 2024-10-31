@@ -1,4 +1,5 @@
 package com.example.fooddelivery_app.model.Order;
+
 import java.util.UUID;
 import com.google.gson.annotations.SerializedName;
 
@@ -27,8 +28,11 @@ public class Cart {
     @SerializedName("price")
     private int price;
 
+    @SerializedName("foodImage")
+    private String foodImage;
+
     // Constructor
-    public Cart(UUID id, UUID userId, UUID shopId, UUID foodId, int quantity, String foodName, String shopName, int price) {
+    public Cart(UUID id, UUID userId, UUID shopId, UUID foodId, int quantity, String foodName, String shopName, int price, String foodImage) {
         this.id = id;
         this.userId = userId;
         this.shopId = shopId;
@@ -37,6 +41,7 @@ public class Cart {
         this.foodName = foodName;
         this.shopName = shopName;
         this.price = price;
+        this.foodImage = foodImage;
     }
 
     // Getters
@@ -72,6 +77,10 @@ public class Cart {
         return price;
     }
 
+    public String getFoodImage() {
+        return foodImage;
+    }
+
     // Setters (optional, if you need to modify values)
     public void setId(UUID id) {
         this.id = id;
@@ -103,5 +112,9 @@ public class Cart {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void setFoodImage(String foodImage) {
+        this.foodImage = foodImage;
     }
 }

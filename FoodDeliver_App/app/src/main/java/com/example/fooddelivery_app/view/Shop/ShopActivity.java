@@ -23,29 +23,29 @@ public class ShopActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_shopvoted);
 
-        RecyclerView recyclerView = findViewById(R.id.productRecyclerViews);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        shopAdapter = new ShopAdapter();
-        recyclerView.setAdapter(shopAdapter);
-
-        ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
-
-        shopViewModel.getAllShops().observe(this, shops -> {
-            // Update the adapter with the new list of shops
-            shopAdapter.setShopList(shops); // Updated method name here
-        });
-
-        // Optional: Observe error messages
-        shopViewModel.getErrorMessages().observe(this, errorMessage -> {
-            if (errorMessage != null) {
-                // Display error message to the user, e.g., using a Toast or Snackbar
-                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Optional: If you want to refresh the shop list when the activity is created
-        shopViewModel.refreshShops();
+//        RecyclerView recyclerView = findViewById(R.id.productRecyclerViews);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//
+//        shopAdapter = new ShopAdapter();
+//        recyclerView.setAdapter(shopAdapter);
+//
+//        ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+//
+//        shopViewModel.getAllShops().observe(this, shops -> {
+//            // Update the adapter with the new list of shops
+//            shopAdapter.setShopList(shops); // Updated method name here
+//        });
+//
+//        // Optional: Observe error messages
+//        shopViewModel.getErrorMessages().observe(this, errorMessage -> {
+//            if (errorMessage != null) {
+//                // Display error message to the user, e.g., using a Toast or Snackbar
+//                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        // Optional: If you want to refresh the shop list when the activity is created
+//        shopViewModel.refreshShops();
     }
 }

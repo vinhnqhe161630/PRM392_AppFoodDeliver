@@ -1,5 +1,8 @@
 package com.example.fooddelivery_app.repository;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -10,6 +13,7 @@ import com.example.fooddelivery_app.model.Order.OrderDetails;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.AuthApiService;
 import com.example.fooddelivery_app.retrofit.apis.OrderApiService;
+import com.example.fooddelivery_app.view.Order.OrderDetailsActivity;
 
 import org.json.JSONObject;
 
@@ -103,7 +107,7 @@ public class OrderRepository {
     }
 
 //Get order Details by order id
-    public LiveData<List<OrderDetails>> getOrderDetail(UUID orderId) {
+    public LiveData<List<OrderDetails>> getOrderDetail(UUID orderId, Context context) {
         MutableLiveData<List<OrderDetails>> liveData = new MutableLiveData<>();
         Call<List<OrderDetails>> call = orderApiService.getOrderDetail(orderId);
 
@@ -116,6 +120,8 @@ public class OrderRepository {
                 } else {
                     // Handle the response error here if needed
                     liveData.setValue(null);
+                    Toast.makeText(context, "Failed to fetch order details. null value", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -123,6 +129,7 @@ public class OrderRepository {
             public void onFailure(Call<List<OrderDetails>> call, Throwable t) {
                 // Handle the failure, e.g., log error or notify user
                 liveData.setValue(null);
+                Toast.makeText(context, "Failed to fetch order details. "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
