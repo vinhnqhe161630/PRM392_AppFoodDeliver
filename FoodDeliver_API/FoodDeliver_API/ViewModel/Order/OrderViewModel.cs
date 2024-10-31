@@ -13,5 +13,7 @@
         public string Status { get; set; }
         public string? Username { get; set; }
         public string? Shopname { get; set; }
-    }
+		public string? ShopImg { get; set; }
+
+	}
 }

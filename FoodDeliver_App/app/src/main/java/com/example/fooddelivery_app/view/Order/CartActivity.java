@@ -3,9 +3,9 @@ package com.example.fooddelivery_app.view.Order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +19,7 @@ import com.example.fooddelivery_app.model.Order.Cart;
 import com.example.fooddelivery_app.model.Order.Order;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.viewmodel.Order.CartListViewModel;
-import com.example.fooddelivery_app.viewmodel.Order.OrderListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 import java.util.UUID;
 
 public class CartActivity extends AppCompatActivity {
@@ -36,11 +33,24 @@ public class CartActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
         CartListViewModel cartViewModel = new ViewModelProvider(this).get(CartListViewModel.class);
-
+        Button checkout=findViewById(R.id.checkoutButton);
         UUID userId = UUID.fromString(cartViewModel.getUserIdFromToken(this));
 //        String url=cartViewModel.getUserIdFromToken(this);
 //        UUID userId = UUID.fromString("60396245-056f-40be-3d0d-08dcf8f46b6c");
 //        String finalUrl = url;
+        checkout.setOnClickListener(v -> {
+            cartViewModel.checkOut(userId).
+            observe(this, message -> {
+                TextView totalPrice=findViewById(R.id.totalPrice);
+                if (message != null) {
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    orderIntent.putExtra("checkoutMessage", "success");
+                    startActivity(orderIntent);
+                    finish();
+                }else{
+                    Toast.makeText(this, "Checkout failed. Please try again.", Toast.LENGTH_SHORT).show();                }
+            });
+        });
         cartViewModel.getCartByUserId(userId).
                 observe(this, carts -> {
             TextView totalPrice=findViewById(R.id.totalPrice);
@@ -49,9 +59,12 @@ public class CartActivity extends AppCompatActivity {
                     CartAdapter cartAdapter = new CartAdapter(carts);
                     recyclerView.setAdapter(cartAdapter);
             }else{
-                totalPrice.setText("null");
+                checkout.setEnabled(false);
+                totalPrice.setText("Cart null");
+                Toast.makeText(this, "Cart null Please try again.", Toast.LENGTH_SHORT).show();
             }
         });
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_cart:

@@ -7,6 +7,7 @@ import android.util.Base64;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.fooddelivery_app.model.Order.AddOrder;
 import com.example.fooddelivery_app.model.Order.Cart;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.repository.CartRepository;
@@ -27,6 +28,9 @@ public class CartListViewModel extends ViewModel {
 
     public LiveData<List<Cart>> getCartByUserId(UUID userId) {
         return  cartRepository.getCartByUserId(userId);
+    }
+    public LiveData<AddOrder> checkOut(UUID userId) {
+        return  cartRepository.checkOut(userId);
     }
 
     public static String getUserIdFromToken(Context context) {
