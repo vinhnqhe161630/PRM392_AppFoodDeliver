@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodDeliver_API.Entities;
 using FoodDeliver_API.ViewModel.Auth;
+using FoodDeliver_API.ViewModel.Food;
 using FoodDeliver_API.ViewModel.Order;
 using FoodDeliver_API.ViewModel.Shop;
 
@@ -26,7 +27,11 @@ namespace FoodDeliver_API.Helpers
 
             CreateMap<OrderDetail, OrderDetailsViewModel>()
                   .ForMember(dest => dest.FoodName, opt => opt.MapFrom(src => src.Food.Name))
-                    .ForMember(dest => dest.FoodImg, opt => opt.MapFrom(src => src.Food.Img)); 
+                    .ForMember(dest => dest.FoodImg, opt => opt.MapFrom(src => src.Food.Img));
+
+            CreateMap<Food, FoodViewModel>()
+                  .ForMember(dest => dest.ShopName, opt => opt.MapFrom(src => src.Account.Name));
+            
         }
     }
     
