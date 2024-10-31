@@ -27,7 +27,7 @@ public interface OrderApiService {
     @GET("order/{userid}")
     Call<List<Order>> getOrderByUserId(@Path("userid") UUID userId);
 
-    @GET("getOrderDetail/{orderid}")
+    @GET("Order/getOrderDetail/{orderid}")
     Call<List<OrderDetails>> getOrderDetail(@Path("orderid") UUID orderId);
 
 }

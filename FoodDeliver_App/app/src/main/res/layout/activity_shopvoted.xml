@@ -229,7 +229,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="4"
                             android:text="Best Shops"
-                            android:textColor="#3E4A59"
+                            android:textColor="#FF8C00"
                             android:textSize="24sp"
                             android:textStyle="bold" />
 
@@ -288,7 +288,7 @@
                             android:shadowDx="1"
                             android:shadowDy="1"
                             android:shadowRadius="4"
-                            android:text="Worst Shops"
+                            android:text="Worst Shops!!!"
                             android:textColor="#FFFFFF"
                             android:textSize="24sp"
                             android:textStyle="bold" />

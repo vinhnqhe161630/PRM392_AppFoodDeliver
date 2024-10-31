@@ -3,6 +3,7 @@ package com.example.fooddelivery_app.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.fooddelivery_app.model.Order.AddOrder;
 import com.example.fooddelivery_app.model.Order.Cart;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.CartApiService;
@@ -19,6 +20,31 @@ public class CartRepository {
 
     public CartRepository() {
         cartApiService = RetrofitUtility.getClient().create(CartApiService.class);;
+    }
+    public LiveData<AddOrder> checkOut(UUID userId) {
+        MutableLiveData<AddOrder> liveData = new MutableLiveData<>();
+        Call<AddOrder> call = cartApiService.checkOut(userId);
+        call.enqueue(new Callback<AddOrder>() {
+            @Override
+            public void onResponse(Call<AddOrder> call, Response<AddOrder> response) {
+                if (response.isSuccessful()) {
+                    // Update LiveData with the fetched data
+                    liveData.setValue(response.body());
+                } else {
+                    // Handle the response error here if needed
+                    liveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddOrder> call, Throwable t) {
+                // Handle the failure, e.g., log error or notify user
+                liveData.setValue(null);
+            }
+        });
+
+        return liveData;
+
     }
     public LiveData<List<Cart>> getCartByUserId(UUID userId) {
         MutableLiveData<List<Cart>> liveData = new MutableLiveData<>();

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.model.Order.Order;
+import com.example.fooddelivery_app.model.Order.OrderDetails;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.repository.OrderRepository;
 
@@ -29,6 +30,11 @@ public class OrderListViewModel extends ViewModel {
 
 
         return  orderRepository.getOrderByUserId(userId);
+    }
+    public LiveData<List<OrderDetails>> getOrderDetailsByUserId(UUID userId,Context context) {
+
+
+        return  orderRepository.getOrderDetail(userId,context);
     }
 
     public static String getUserIdFromToken(Context context) {

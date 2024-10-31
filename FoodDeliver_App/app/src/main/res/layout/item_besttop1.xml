@@ -2,20 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/rounded_card_background"
+    android:background="@drawable/rounded_card_background_top1"
     android:clickable="true"
-    android:elevation="4dp"
+    android:elevation="6dp"
     android:focusable="true"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="16dp">
 
     <!-- Hình ảnh của Shop -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgShop"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/banner_new"
         app:shapeAppearanceOverlay="@style/RoundedCorners" />
@@ -35,7 +36,7 @@
             android:paddingBottom="2dp"
             android:text="Shop Name"
             android:textColor="#4A148C"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <!-- Địa chỉ với kiểu chữ trung bình và màu sắc tối hơn -->
@@ -46,7 +47,7 @@
             android:paddingBottom="6dp"
             android:text="Address: "
             android:textColor="#616161"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="8dp"
-                android:text="Vote: "
+                android:text="4.5"
                 android:textColor="#FFA000"
                 android:textSize="16sp" />
 
@@ -78,4 +79,13 @@
                 android:stepSize="0.1" />
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Biểu tượng xếp hạng hoặc thông tin thêm bên cạnh -->
+    <ImageView
+        android:id="@+id/starIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/king"
+        android:contentDescription="Star Icon" />
 </LinearLayout>

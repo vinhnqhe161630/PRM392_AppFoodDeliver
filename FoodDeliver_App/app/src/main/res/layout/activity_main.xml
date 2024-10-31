@@ -205,25 +205,14 @@
                         android:layout_margin="10dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="10dp">
-
-                        <!-- Shimmer Layout for loading effect -->
-                        <com.facebook.shimmer.ShimmerFrameLayout
-                            android:id="@+id/shimmer_view_container"
+                        <ImageView
+                            android:id="@+id/banner_imageview"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:shimmer_auto_start="true"
-                            app:shimmer_duration="1200">
+                            android:padding="4dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/banner_food" />
 
-                            <!-- ImageView inside ShimmerFrameLayout -->
-                            <ImageView
-                                android:id="@+id/banner_imageview"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="4dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/banner_new" />
-
-                        </com.facebook.shimmer.ShimmerFrameLayout>
                     </androidx.cardview.widget.CardView>
 
 

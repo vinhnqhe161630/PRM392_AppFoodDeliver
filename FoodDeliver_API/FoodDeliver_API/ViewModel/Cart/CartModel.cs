@@ -12,6 +12,8 @@ namespace FoodDeliver_API.ViewModel.Cart
         public int Price { get; set; }
 
         public string FoodName { get; set; }
-        public string ShopName { get; set; }
+		public string FoodImage { get; set; }
+
+		public string ShopName { get; set; }
     }
 }
