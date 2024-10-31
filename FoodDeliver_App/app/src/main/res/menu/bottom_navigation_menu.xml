@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_More"
         android:title="More"
-        android:icon="@drawable/baseline_more" />
+        android:icon="@drawable/clipboard" />
 
     <item
         android:id="@+id/navigation_home"
