@@ -3,6 +3,8 @@ package com.example.fooddelivery_app.view.Shop;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.FoodApiService;
 import com.example.fooddelivery_app.retrofit.apis.ShopApiService;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,6 +35,7 @@ public class ShopDetailActivity extends AppCompatActivity {
     private FoodAdapter foodAdapter;
     private TextView tvShopName, tvAddress, tvEmail, tvPhone;
     private RatingBar ratingBar;
+    private List<FoodDto> foodList;
     private static final String TAG = "ShopDetailActivity";
 
     @SuppressLint("MissingInflatedId")
@@ -41,6 +46,24 @@ public class ShopDetailActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.productRecyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        TextView filterLowToHigh = findViewById(R.id.filter_low_to_high);
+        TextView filterHighToLow = findViewById(R.id.filter_high_to_low);
+        TextView bestSellerButton = findViewById(R.id.filter_best_seller);
+        bestSellerButton.setOnClickListener(v -> foodAdapter.sortFoodListByCommentCount());
+
+        filterLowToHigh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortFoodListAscending();
+            }
+        });
+
+        filterHighToLow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortFoodListDescending();
+            }
+        });
 
         // Initialize UI components
         tvShopName = findViewById(R.id.tvShopName);
@@ -50,9 +73,6 @@ public class ShopDetailActivity extends AppCompatActivity {
 
         ratingBar = findViewById(R.id.ratingBar1);
 
-        // Get the average rating from your foodDetail object
-
-        ratingBar = findViewById(R.id.ratingBar1);
         // Giả sử accountId đã được cung cấp
         String accountId = "2cda8ad7-1ea9-4a56-0daa-08dcf985ada7"; // Thay bằng accountId thực tế
         getAccountById(accountId);
@@ -64,7 +84,7 @@ public class ShopDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<FoodDto>> call, Response<List<FoodDto>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<FoodDto> foodList = response.body();
+                     foodList = response.body();
                     Log.d(TAG, "Received food list: " + foodList.size());
                     foodAdapter = new FoodAdapter(ShopDetailActivity.this, foodList);
                     recyclerView.setAdapter(foodAdapter);
@@ -83,6 +103,31 @@ public class ShopDetailActivity extends AppCompatActivity {
             }
         });
     }
+    private void sortFoodListAscending() {
+        if (foodList != null) { // Ensure foodList is not null
+            Collections.sort(foodList, new Comparator<FoodDto>() {
+                @Override
+                public int compare(FoodDto item1, FoodDto item2) {
+                    return Double.compare(item1.getPrice(), item2.getPrice());
+                }
+            });
+            foodAdapter.notifyDataSetChanged(); // Notify adapter after sorting
+        }
+    }
+
+    private void sortFoodListDescending() {
+        if (foodList != null) { // Ensure foodList is not null
+            Collections.sort(foodList, new Comparator<FoodDto>() {
+                @Override
+                public int compare(FoodDto item1, FoodDto item2) {
+                    return Double.compare(item2.getPrice(), item1.getPrice());
+                }
+            });
+            foodAdapter.notifyDataSetChanged(); // Notify adapter after sorting
+        }
+    }
+
+
     private void getAccountById(String id) {
         ShopApiService apiService = RetrofitUtility.getClient().create(ShopApiService.class);
         Call<ShopDTO> call = apiService.getShopById(id);

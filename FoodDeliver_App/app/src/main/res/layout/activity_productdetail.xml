@@ -199,7 +199,7 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView"
+                        android:id="@+id/cardShop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -242,13 +242,19 @@
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
-
                                 <TextView
                                     android:id="@+id/ShopAddress"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
                                     android:text="Thông tin của shop"
+                                    android:textSize="14sp" />
+                                <TextView
+                                    android:id="@+id/tvFoodQuantity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Đã bán"
                                     android:textSize="14sp" />
 
                                 <LinearLayout

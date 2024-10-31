@@ -11,14 +11,22 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Food.FoodDto;
+import com.example.fooddelivery_app.retrofit.RetrofitUtility;
+import com.example.fooddelivery_app.retrofit.apis.FoodApiService;
 import com.example.fooddelivery_app.view.Shop.FoodDetailActivity;
 
+import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
@@ -37,7 +45,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @NonNull
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_food, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
         return new FoodViewHolder(view);
     }
 
@@ -47,10 +55,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         holder.productNameTextView.setText(food.getName());
         holder.productInfoTextView.setText(food.getDescription());
         holder.productPriceTextView.setText(String.format("$%.2f", food.getPrice()));
-
+        fetchAndDisplayFoodQuantity(food.getId().toString(), holder.productQuantityTextView);
         // Load image using Glide
         Glide.with(context).load(food.getImg()).into(holder.productImageView);
-        holder.productImageView.setOnClickListener(v -> {
+        holder.cardproduct.setOnClickListener(v -> {
             Intent intent = new Intent(context, FoodDetailActivity.class);
             intent.putExtra("foodId", food.getId().toString());
             context.startActivity(intent);
@@ -59,6 +67,34 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         float averageRating = (float) food.calculateAverageRating();
         holder.ratingBar1.setRating(averageRating); // Set the rating bar stars to the average rating
     }
+    private void fetchAndDisplayFoodQuantity(String foodId, TextView quantityTextView) {
+        // Initialize the API service
+        FoodApiService apiService = RetrofitUtility.getClient().create(FoodApiService.class);
+
+        // Call the API to get the quantity
+        Call<Integer> call = apiService.getFoodQuantity(foodId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    int quantity = response.body();
+                    quantityTextView.setText("Đã bán: " + quantity);
+                } else {
+                    quantityTextView.setText("Đã bán: N/A"); // Handle case where quantity isn't available
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                quantityTextView.setText("Đã bán: N/A"); // Display an error message if call fails
+            }
+        });
+    }
+    public void sortFoodListByCommentCount() {
+        Collections.sort(foodList, (food1, food2) -> Integer.compare(food2.getCommentCount(), food1.getCommentCount()));
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
@@ -71,7 +107,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         TextView productPriceTextView;
         ImageView productImageView;
         RatingBar ratingBar1;
-        Button deleteButton;
+        TextView productQuantityTextView;
+        CardView cardproduct;
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,12 +117,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             productPriceTextView = itemView.findViewById(R.id.productPriceTextView);
             productImageView = itemView.findViewById(R.id.productImageView);
             ratingBar1 = itemView.findViewById(R.id.ratingBar1);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+            cardproduct = itemView.findViewById(R.id.cardproduct);
+            productQuantityTextView = itemView.findViewById(R.id.productQuantityTextView);
 
-            // Optional: set delete button click listener
-            deleteButton.setOnClickListener(v -> {
-                // Handle delete action (e.g., remove item from list and notify adapter)
-            });
+
+
         }
     }
 }

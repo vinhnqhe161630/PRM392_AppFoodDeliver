@@ -44,5 +44,8 @@ public interface FoodApiService {
     @DELETE("comments/{id}")
     Call<Void> deleteComment(@Path("id") String commentId);
 
+    @GET("Foods/FoodQuantity/{foodId}")
+    Call<Integer> getFoodQuantity(@Path("foodId") String foodId);
+
 }
 

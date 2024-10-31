@@ -1,6 +1,7 @@
 package com.example.fooddelivery_app.view.Shop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +45,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     private static final String TAG = "FoodDetailActivity";
     private TextView productNameTextView, productDescriptionTextView, productPriceTextView;
-    private TextView accountNameTextView, accountAddressTextView;
+    private TextView accountNameTextView, accountAddressTextView, tvFoodQuantity;;
     private ImageView productImageView;
     private CommentAdapter commentAdapter;
     private RecyclerView commentsRecyclerView;
@@ -51,6 +53,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     private EditText commentInput;
     private RatingBar commentRatingBar;
     private Button submitCommentButton;
+    CardView cardShop;
     private boolean hasUserCommented = false , hasPurchased = false;;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +70,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         accountNameTextView = findViewById(R.id.ShopNameTextView);
         accountAddressTextView = findViewById(R.id.ShopAddress);
 
-
-
+        cardShop = findViewById(R.id.cardShop);
+        tvFoodQuantity = findViewById(R.id.tvFoodQuantity);
         // Initialize RecyclerView for comments
 
         commentInput = findViewById(R.id.commentInput);
@@ -81,13 +84,15 @@ public class FoodDetailActivity extends AppCompatActivity {
         String foodId = getIntent().getStringExtra("foodId");
         if (foodId != null) {
             getFoodDetail(foodId);
-
+            getFoodQuantity(foodId);
             getCommentsByFoodId(foodId);
             checkPurchase(userId, foodId);
         } else {
             Toast.makeText(this, "Food ID is missing", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+
 
         submitCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +116,29 @@ public class FoodDetailActivity extends AppCompatActivity {
         });
     }
 
+    private void getFoodQuantity(String foodId) {
+        FoodApiService apiService = RetrofitUtility.getClient().create(FoodApiService.class);
+        Call<Integer> call = apiService.getFoodQuantity(foodId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    int quantity = response.body();
+                    Log.d(TAG, "Food Quantity: " + quantity);
+                    tvFoodQuantity.setText("Đã bán: " + quantity);
+                } else {
+                    Log.e(TAG, "Failed to retrieve quantity. Code: " + response.code());
+                    Toast.makeText(FoodDetailActivity.this, "Failed to load quantity", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Log.e(TAG, "Error: " + t.getMessage());
+                Toast.makeText(FoodDetailActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     public static String getUserIdFromToken(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String authToken = sharedPreferences.getString("auth_token", null);
@@ -174,6 +202,12 @@ public class FoodDetailActivity extends AppCompatActivity {
                     ratingBar.setRating(averageRating);
 
 
+
+                    cardShop.setOnClickListener(v -> {
+                        Intent intent = new Intent(FoodDetailActivity.this, ShopDetailActivity.class);
+                        intent.putExtra("ShopId", foodDetail.getAccount().getId().toString());
+                        startActivity(intent);
+                    });
 
 
                 } else {

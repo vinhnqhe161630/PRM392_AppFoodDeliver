@@ -21,13 +21,16 @@ public class FoodDto {
     private String img;
     @SerializedName("status")
     private boolean status;
+    @SerializedName("comments")
+    private List<Comment> comments;
 
     public List<Comment> getComments() {
         return comments;
     }
 
-    @SerializedName("comments")
-    private List<Comment> comments;
+    public int getCommentCount() {
+        return comments != null ? comments.size() : 0;
+    }
     private Account account;
 
     // Constructor, Getters, and Setters
@@ -36,6 +39,7 @@ public class FoodDto {
     }
 
     public static class Account {
+        private String id;
         private String name;
         private String img;
         private String address;
@@ -55,6 +59,14 @@ public class FoodDto {
 
         public String getImg() {
             return img;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
     }
     public double calculateAverageRating() {

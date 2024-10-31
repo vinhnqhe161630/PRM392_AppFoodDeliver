@@ -138,7 +138,7 @@ using Microsoft.EntityFrameworkCore;
         public ActionResult<PurchaseCheckDto> CheckPurchase(Guid userId, Guid foodId)
         {
             // Directly check for purchases without async-await
-            var hasPurchased = _context.Order
+            var hasPurchased =  _context.Order
                 .Where(order => order.UserId == userId)
                 .SelectMany(order => order.OrderDetails)
                 .Any(orderDetail => orderDetail.FoodID == foodId);

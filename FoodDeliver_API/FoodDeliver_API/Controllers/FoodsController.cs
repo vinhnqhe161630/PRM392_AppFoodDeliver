@@ -139,7 +139,15 @@ namespace FoodDeliver_API.Controllers
             }
         }
 
+        [HttpGet("FoodQuantity/{foodId}")]
+        public async Task<IActionResult> GetFoodQuantity(Guid foodId)
+        {
+            var totalQuantity = await _context.OrderDetails
+                .Where(od => od.FoodID == foodId)
+                .SumAsync(od => od.Quantity);
 
+            return Ok(totalQuantity);
+        }
 
     }
 
