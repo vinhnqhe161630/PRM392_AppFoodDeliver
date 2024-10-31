@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Gradient màu vàng óng ánh để tạo điểm nhấn -->
+            <gradient
+                android:angle="45"
+                android:endColor="#FFFACD"
+                android:startColor="#FFD700" />
+            <corners android:radius="16dp" /> <!-- Góc bo tròn hơn để tạo cảm giác nổi bật -->
+            <stroke
+                android:width="2dp"
+                android:color="#FFB300" />  <!-- Đường viền màu vàng cam để tăng sự nổi bật -->
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#66FFD700" /> <!-- Hiệu ứng ánh sáng mờ -->
+        </shape>
+    </item>
+</layer-list>
