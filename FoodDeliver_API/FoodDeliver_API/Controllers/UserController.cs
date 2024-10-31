@@ -43,6 +43,7 @@ namespace FoodDeliver_API.Controllers
                     i++;
                 }
 
+
                 return Ok(shopVms);
             }
             catch(Exception e)

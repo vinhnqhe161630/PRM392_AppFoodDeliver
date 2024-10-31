@@ -12,8 +12,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 
 public interface FoodApiService {
-@GET("Food")
-Call<List<FoodDto>> getFoods();
+    @GET("Food")
+    Call<List<FoodDto>> getFoods();
 
 
 }

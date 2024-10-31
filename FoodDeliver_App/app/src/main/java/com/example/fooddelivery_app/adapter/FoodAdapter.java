@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Food.FoodDto;
+import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.view.FoodDetailActivity;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public FoodAdapter(Context context, List<FoodDto> foodList) {
         this.context = context;
         this.foodList = foodList;
+    }
+    public void setFoodList(Context context,List<FoodDto> foodList) {
+        this.foodList = foodList;
+        this.context = context;
+        notifyDataSetChanged();
     }
 
     @NonNull

@@ -25,9 +25,9 @@ namespace FoodDeliver_API.Controllers
             var foods=  await _context.Foods.Include(x => x.Account).Include(x => x.Comments)
               .ToListAsync();
 
-            var foodvm = _mapper.Map<List<FoodViewModel>>(foods);
+      
 
-            return Ok(foodvm);
+            return Ok(foods);
         }
     }
     
