@@ -20,6 +20,7 @@ namespace FoodDeliver_API.Services
             }
             return await _context.Carts.Include(o => o.Shop)
                 .Include(o => o.Account)
+                .Include(o=>o.Food)
                 .Where(x => x.UserId == userId).ToListAsync();
         }   
 
