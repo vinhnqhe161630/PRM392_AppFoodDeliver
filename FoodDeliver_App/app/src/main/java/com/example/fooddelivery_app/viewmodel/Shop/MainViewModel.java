@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fooddelivery_app.model.Food.Food;
+import com.example.fooddelivery_app.model.Food.FoodDto;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.repository.FoodRepository;
 import com.example.fooddelivery_app.repository.ShopRepository;
@@ -15,7 +16,7 @@ public class MainViewModel extends ViewModel {
     private final FoodRepository foodRepository;
 
     private final MutableLiveData<List<Shop>> allShops;
-    private final MutableLiveData<List<Food>> allFoods;
+    private final MutableLiveData<List<FoodDto>> allFoods;
 
     public MainViewModel() {
         shopRepository = new ShopRepository();
@@ -30,7 +31,7 @@ public class MainViewModel extends ViewModel {
         return allShops;
 
     }
-    public MutableLiveData<List<Food>> getFoods() {
+    public MutableLiveData<List<FoodDto>> getFoods() {
         return allFoods;
     }
 
@@ -41,7 +42,7 @@ public class MainViewModel extends ViewModel {
             allShops.setValue(updatedShops);
         });
 
-        MutableLiveData<List<Food>> refreshedFoods = foodRepository.getFoods();
+        MutableLiveData<List<FoodDto>> refreshedFoods = foodRepository.getFoods();
         refreshedFoods.observeForever(updatedFoods -> {
             allFoods.setValue(updatedFoods);
         });

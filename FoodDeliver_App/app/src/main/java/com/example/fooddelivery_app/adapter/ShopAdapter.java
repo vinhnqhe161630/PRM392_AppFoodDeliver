@@ -33,7 +33,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         Shop shop = shopList.get(position);
         holder.tvShopName.setText(shop.getName());
         holder.tvTotalOrder.setText("Total Orders: " + shop.getTotalOrder());
-        holder.tvVote.setText("Vote: " + shop.getVote());
+        //holder.tvVote.setText("Vote: " + shop.getVote());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             super(itemView);
             tvShopName = itemView.findViewById(R.id.tvShopName);
             tvTotalOrder = itemView.findViewById(R.id.tvTotalOrder);
-            tvVote = itemView.findViewById(R.id.tvVote);
+            //tvVote = itemView.findViewById(R.id.tvVote);
         }
     }
 }

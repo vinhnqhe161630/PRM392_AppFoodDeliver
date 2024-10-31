@@ -2,6 +2,7 @@ package com.example.fooddelivery_app.retrofit.apis;
 
 import com.example.fooddelivery_app.model.Auth.LoginModel;
 import com.example.fooddelivery_app.model.Food.Food;
+import com.example.fooddelivery_app.model.Food.FoodDto;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import retrofit2.http.GET;
 
 public interface FoodApiService {
 @GET("Food")
-Call<List<Food>> getFoods();
+Call<List<FoodDto>> getFoods();
 
 
 }

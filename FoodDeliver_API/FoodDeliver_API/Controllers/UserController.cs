@@ -66,6 +66,20 @@ namespace FoodDeliver_API.Controllers
 
             return Ok("Shop");
         }
+        [HttpGet()]
+        public async Task<IActionResult> GetUser()
+        {
+            try
+            {
+                List<Account> shops = await _context.Accounts.ToListAsync();
+                return Ok(shops);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
+        }
 
     }
 }

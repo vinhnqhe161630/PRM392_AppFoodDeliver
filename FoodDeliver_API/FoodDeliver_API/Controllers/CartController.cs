@@ -3,9 +3,9 @@
 using FoodDeliver_API.Entities;
 using FoodDeliver_API.Services;
 using FoodDeliver_API.ViewModel.Cart;
-using FoodDeliver_API.ViewModel.Order;
-
+using FoodDeliver_API.ViewModel.Cart;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace FoodDeliver_API.Controllers
 {
@@ -15,28 +15,43 @@ namespace FoodDeliver_API.Controllers
 	public class CartController : Controller
 	{
 		private readonly IMapper _mapper;
-		private readonly OrderService _orderService;
-		public CartController(IMapper mapper, OrderService orderService)
+		private readonly CartService _cartService;
+		public CartController(IMapper mapper, CartService cartService)
 		{
 			_mapper = mapper;
-			_orderService = orderService;
+			_cartService = cartService;
 		}
 		[HttpPost]
 		public async Task<IActionResult> createCart(AddCart addcart)
 		{
-			var order = _mapper.Map<Order>(addcart);
+			var cart = _mapper.Map<Cart>(addcart);
+            await _cartService.createCart(cart);
 
-
-			return Ok("Add ok");
+            return Ok("Add ok");
 		}
-		[HttpDelete]
-		public async Task<IActionResult> deleteCart(AddOrder addorder)
+        [HttpGet("{userid}")]
+        public async Task<IActionResult> getCartbyUserId(Guid userid)
+        {
+            try
+            {
+                var cart = await _cartService.getCartByUserId(userid);
+                var cartVm = _mapper.Map<List<CartModel>>(cart);
+                return Ok(cartVm);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+        
+        [HttpDelete]
+		public async Task<IActionResult> deleteCart(AddCart addcart)
 		{
-			var order = _mapper.Map<Order>(addorder);
+			var cart = _mapper.Map<Cart>(addcart);
 
 
 			return Ok("Add ok");
 		}
 	}
-
 }

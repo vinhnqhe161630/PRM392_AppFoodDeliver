@@ -19,6 +19,9 @@
             android:name=".view.Order.OrderListActivity"
             android:exported="false" />
         <activity
+            android:name=".view.Order.CartActivity"
+            android:exported="false" />
+        <activity
 
             android:name=".view.Shop.ShopActivity"
             android:exported="false" />
@@ -43,6 +46,10 @@
         <activity
             android:name=".view.MainActivity"
             android:exported="true" />
+        <activity android:name=".view.ShopActivity"  android:exported="true" />
+        <activity android:name=".view.FoodDetailActivity"  android:exported="true" />
+
+
     </application>
 
 </manifest>

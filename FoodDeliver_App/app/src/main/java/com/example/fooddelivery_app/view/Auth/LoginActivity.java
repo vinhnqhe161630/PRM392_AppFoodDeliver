@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.example.fooddelivery_app.view.ShopActivity;
 import com.example.fooddelivery_app.viewmodel.Auth.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,12 +47,12 @@ public class LoginActivity extends AppCompatActivity {
                 // Xử lý khi đăng nhập thành công
                 SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-               editor.putString("auth_token", result);
+                editor.putString("auth_token", result);
                 editor.apply();
 
                 Toast.makeText(LoginActivity.this, "Login Successfull ", Toast.LENGTH_SHORT).show();
                 // Chuyển hướng đến Activity chính (MainActivity)
-                Intent intent = new Intent(LoginActivity.this, OrderListActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ShopActivity.class);
                 startActivity(intent);
                 finish(); // Kết thúc Activity đăng nhập
             }
@@ -95,4 +96,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-

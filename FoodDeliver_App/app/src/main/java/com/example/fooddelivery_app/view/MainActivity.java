@@ -1,27 +1,19 @@
 package com.example.fooddelivery_app.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.fooddelivery_app.R;
-import com.example.fooddelivery_app.model.User;
-import com.example.fooddelivery_app.retrofit.RetrofitUtility;
-import com.example.fooddelivery_app.retrofit.apis.ApiService;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.fooddelivery_app.view.Order.CartActivity;
+import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -29,5 +21,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        // Set a listener for menu item clicks
+        // NavigationBarView. setOnItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_cart:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent cartIntent = new Intent(this, CartActivity.class);
+                    startActivity(cartIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_More:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                    return true;
+
+                default:
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                    return true;
+                // Handle other menu items here
+
+            }
+        });
     }
 }
