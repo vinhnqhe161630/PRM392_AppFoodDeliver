@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.fooddelivery_app.model.Shop.Shop;
 import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Food.FoodDto;
@@ -29,7 +29,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         this.context = context;
         this.foodList = foodList;
     }
-
+    public void setFoodList(Context context,List<FoodDto> foodList) {
+        this.foodList = foodList;
+        this.context = context;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Shop.Shop;
-import com.example.fooddelivery_app.view.FoodDetailActivity;
+import com.example.fooddelivery_app.view.Shop.FoodDetailActivity;
 
 import java.util.List;
 
