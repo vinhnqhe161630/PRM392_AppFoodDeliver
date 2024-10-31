@@ -53,6 +53,68 @@ namespace FoodDeliver_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        //public Guid UserId { get; set; }
+        //public Guid ShopId { get; set; }
+        //public string CustomerName { get; set; }
+        //public string CustomerPhone { get; set; }
+        //public string CustomerAddress { get; set; }
+        //public DateTime OrderDate { get; set; }
+        //public decimal TotalAmount { get; set; }
+        //public string Status { get; set; }
+
+        [HttpPost("checkOut/{id}")]
+        public async Task<IActionResult> checkOut(Guid userid)
+        {
+            try
+            {
+                Account a=await _orderService.getUser(userid);
+                if (a != null)
+                {
+                    List<Account> list= await _orderService.GetShopsFromCarts(userid);                    
+                    foreach(Account acc in list)
+                    {
+                        List<Cart> carts = await _orderService.getCartByUserId(userid,acc.Id);
+                        int price = 0;
+                        AddOrder addOrder = new AddOrder();
+                        addOrder.OrderDate = DateTime.Now;
+                        addOrder.Status = "in process";
+                        addOrder.UserId = userid;
+                        addOrder.ShopId=acc.Id;
+                        addOrder.CustomerName = a.Name;
+                        addOrder.CustomerPhone = a.Phone;
+                        addOrder.CustomerAddress = a.Address;
+                        addOrder.TotalAmount=carts.Sum(c=>c.Quantity*c.Food.Price);
+                        //create order
+                        var order = _mapper.Map<Order>(addOrder);
+
+                        await _orderService.createOrder(order);
+                        Order o = await _orderService.getOrder();
+                        Guid OrderId=o.Id;
+                        //create order detail
+                        foreach (Cart cart in carts)
+                        {
+                            OrderDetail detail = new OrderDetail();
+                            detail.OrderID=OrderId;
+                            detail.FoodID=cart.FoodId;
+                            detail.Price=cart.Food.Price;
+                            detail.Quantity = cart.Quantity;
+                            detail.Total= cart.Food.Price*cart.Quantity;
+                            await _orderService.createOrderDetail(detail);
+                        }
+                    }
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+                return Ok("Add ok");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost("addOrderDetail")]
         public async Task<IActionResult> createOrderDetail(OrderDetail orderDetail)
         {
