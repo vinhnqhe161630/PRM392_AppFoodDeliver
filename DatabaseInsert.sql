@@ -1,4 +1,4 @@
-﻿USE [PRM392]
+﻿USE [PRM392_1]
 GO
 
 INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000002-0000-0000-0000-000000000002', N'Bob Tran', N'bob.tran@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'bob.png', N'0987654321', N'456 Park Ave, Ho Chi Minh City', N'User', 1)
@@ -155,4 +155,34 @@ VALUES
             3, -- Quantity
             9.99, -- Price per item
             29.97); -- Total
+GO
+
+INSERT INTO [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES 
+(N'a0000007-0000-0000-0000-000000000007', N'Trần Minh', N'tran.minh@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'tran.png', N'0123456789', N'123 Tran Hung Dao, Ho Chi Minh', N'Shop', 1),
+(N'a0000008-0000-0000-0000-000000000008', N'Lê Thị Hằng', N'le.hang@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'le.png', N'0987654321', N'456 Le Lai, Hanoi', N'Shop', 1),
+(N'a0000009-0000-0000-0000-000000000009', N'Nguyễn Văn An', N'nguyen.an@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'an.png', N'0912345678', N'789 Nguyen Trai, Da Nang', N'Shop', 1),
+(N'a000000A-0000-0000-0000-00000000000A', N'Phạm Minh Tuấn', N'pham.tuan@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'tuan.png', N'0976543210', N'321 Minh Khai, Hai Phong', N'Shop', 1),
+(N'a000000B-0000-0000-0000-00000000000B', N'Vũ Thị Như', N'vu.nhu@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'nhu.png', N'0901234567', N'654 Tran Phu, Can Tho', N'Shop', 1),
+(N'a000000C-0000-0000-0000-00000000000C', N'Hoàng Minh Châu', N'hoang.chau@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'chau.png', N'0981234567', N'321 Le Duan, Nha Trang', N'Shop', 1),
+(N'a000000D-0000-0000-0000-00000000000D', N'Tô Văn Hải', N'to.hai@example.com', N'$2a$11$xxxxxxxxxxxxxx', N'hai.png', N'0923456789', N'987 Tran Dai Nghia, Da Lat', N'Shop', 1);
+GO	
+
+INSERT INTO [dbo].[Foods] ([Id], [Name], [Price], [Description], [Img], [Status], [AccountID]) VALUES 
+(CAST('F0000006-0000-0000-0000-000000000006' AS uniqueidentifier), 'Bún Chả', 45.00, 'Món bún chả Hà Nội truyền thống', 'bun_cha.png', 1, CAST('a0000007-0000-0000-0000-000000000007' AS uniqueidentifier)),
+(CAST('F0000007-0000-0000-0000-000000000007' AS uniqueidentifier), 'Gà Rán', 50.00, 'Gà rán giòn ngon, ăn kèm với nước sốt', 'ga_ran.png', 1, CAST('a0000008-0000-0000-0000-000000000008' AS uniqueidentifier)),
+(CAST('F0000008-0000-0000-0000-000000000008' AS uniqueidentifier), 'Bánh Xèo', 35.00, 'Bánh xèo miền Trung nhân tôm thịt', 'banh_xeo.png', 1, CAST('a0000009-0000-0000-0000-000000000009' AS uniqueidentifier)),
+(CAST('F0000009-0000-0000-0000-000000000009' AS uniqueidentifier), 'Chả Giò', 40.00, 'Chả giò chiên giòn, nhân tôm và thịt', 'cha_gio.png', 1, CAST('a000000A-0000-0000-0000-00000000000A' AS uniqueidentifier)),
+(CAST('F000000A-0000-0000-0000-00000000000A' AS uniqueidentifier), 'Cá Kho Tộ', 60.00, 'Cá kho tộ, món ăn đặc trưng miền Nam', 'ca_kho_to.png', 1, CAST('a000000B-0000-0000-0000-00000000000B' AS uniqueidentifier)),
+(CAST('F000000B-0000-0000-0000-00000000000B' AS uniqueidentifier), 'Sushi', 80.00, 'Sushi Nhật Bản, tươi ngon và đẹp mắt', 'sushi.png', 1, CAST('a000000C-0000-0000-0000-00000000000C' AS uniqueidentifier)),
+(CAST('F000000C-0000-0000-0000-00000000000C' AS uniqueidentifier), 'Bánh Pía', 25.00, 'Bánh pía đặc sản Sóc Trăng', 'banh_pia.png', 1, CAST('a000000D-0000-0000-0000-00000000000D' AS uniqueidentifier));
+GO
+
+INSERT INTO [dbo].[Comments] ([Id], [Content], [Vote], [CommentDate], [UserID], [FoodID]) VALUES 
+(CAST('C0000006-0000-0000-0000-000000000006' AS uniqueidentifier), N'Bún chả rất ngon, đặc biệt là nước chấm!', 5, '2024-10-31 14:00:00.0000000', CAST('a0000007-0000-0000-0000-000000000007' AS uniqueidentifier), CAST('F0000006-0000-0000-0000-000000000006' AS uniqueidentifier)),
+(CAST('C0000007-0000-0000-0000-000000000007' AS uniqueidentifier), N'Gà rán giòn ngon, tôi rất thích!', 4, '2024-10-31 14:30:00.0000000', CAST('a0000008-0000-0000-0000-000000000008' AS uniqueidentifier), CAST('F0000007-0000-0000-0000-000000000007' AS uniqueidentifier)),
+(CAST('C0000008-0000-0000-0000-000000000008' AS uniqueidentifier), N'Bánh xèo thơm ngon, ăn với rau sống rất tuyệt!', 1, '2024-10-31 15:00:00.0000000', CAST('a0000009-0000-0000-0000-000000000009' AS uniqueidentifier), CAST('F0000008-0000-0000-0000-000000000008' AS uniqueidentifier)),
+(CAST('C0000009-0000-0000-0000-000000000009' AS uniqueidentifier), N'Chả giò giòn ngon, rất đáng thử!', 1, '2024-10-31 15:30:00.0000000', CAST('a000000A-0000-0000-0000-00000000000A' AS uniqueidentifier), CAST('F0000009-0000-0000-0000-000000000009' AS uniqueidentifier)),
+(CAST('C000000A-0000-0000-0000-00000000000A' AS uniqueidentifier), N'Cá kho tộ rất vừa miệng, mình sẽ quay lại!', 1, '2024-10-31 16:00:00.0000000', CAST('a000000B-0000-0000-0000-00000000000B' AS uniqueidentifier), CAST('F000000A-0000-0000-0000-00000000000A' AS uniqueidentifier)),
+(CAST('C000000B-0000-0000-0000-00000000000B' AS uniqueidentifier), N'Sushi rất tươi ngon và đẹp mắt!', 1, '2024-10-31 16:30:00.0000000', CAST('a000000C-0000-0000-0000-00000000000C' AS uniqueidentifier), CAST('F000000B-0000-0000-0000-00000000000B' AS uniqueidentifier)),
+(CAST('C000000C-0000-0000-0000-00000000000C' AS uniqueidentifier), N'Bánh pía rất thơm ngon, mình thích!', 1, '2024-10-31 17:00:00.0000000', CAST('a000000D-0000-0000-0000-00000000000D' AS uniqueidentifier), CAST('F000000C-0000-0000-0000-00000000000C' AS uniqueidentifier));
 GO

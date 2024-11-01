@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="8dp"
     android:clickable="true"
@@ -9,7 +10,7 @@
     android:focusable="true"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="#FF9800"> <!-- Màu nền cam để biểu thị sự không hài lòng nhẹ hơn -->
+    android:background="@drawable/rounded_card_background_top2_worst"> <!-- Màu nền cam để biểu thị sự không hài lòng nhẹ hơn -->
 
     <!-- Hình ảnh của Shop -->
     <com.google.android.material.imageview.ShapeableImageView

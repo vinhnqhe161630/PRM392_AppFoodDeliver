@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery_app.R;
+import com.example.fooddelivery_app.adapter.BestAdapter;
 import com.example.fooddelivery_app.adapter.ShopAdapter;
+import com.example.fooddelivery_app.adapter.WorstAdapter;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Order.CartActivity;
@@ -37,8 +39,8 @@ public class ShopVotedActivity extends AppCompatActivity {
 
 
         // Initialize the adapters
-        ShopAdapter bestShopAdapter = new ShopAdapter();
-        ShopAdapter worstShopAdapter = new ShopAdapter();
+        BestAdapter bestShopAdapter = new BestAdapter();
+        WorstAdapter worstShopAdapter = new WorstAdapter();
 
 
 
