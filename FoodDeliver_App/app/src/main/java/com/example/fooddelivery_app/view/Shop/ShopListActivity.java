@@ -1,17 +1,22 @@
 package com.example.fooddelivery_app.view.Shop;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.SearchView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.SearchView;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.ShopAdapter;
+import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Order.CartActivity;
+import com.example.fooddelivery_app.view.Order.OrderListActivity;
 import com.example.fooddelivery_app.viewmodel.Shop.ShopListViewModel;
 import com.example.fooddelivery_app.viewmodel.Shop.ShopVotedViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ShopListActivity extends AppCompatActivity {
 
@@ -28,8 +33,8 @@ public class ShopListActivity extends AppCompatActivity {
 
         ShopListViewModel shopViewModel = new ViewModelProvider(this).get(ShopListViewModel.class);
 
-        shopViewModel.getAllShops().observe(this, goodShops -> {
-            shopAdapter.setShopList(this,goodShops);
+        shopViewModel.getAllShops().observe(this, shops -> {
+            shopAdapter.setShopList(this,shops);
         });
 
         // Set adapters to the RecyclerViews
@@ -37,6 +42,7 @@ public class ShopListActivity extends AppCompatActivity {
 
         // Setup SearchView listener
         SearchView searchView = findViewById(R.id.searchView);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -50,10 +56,43 @@ public class ShopListActivity extends AppCompatActivity {
                 return true;
             }
         });
+//
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_cart:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent cartIntent = new Intent(this, CartActivity.class);
+                    startActivity(cartIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_More:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
+                default:
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                    return true;
+                // Handle other menu items here
 
-        findViewById(R.id.filter_best_seller).setOnClickListener(v -> shopViewModel.filterBestSellers());
-        findViewById(R.id.filter_high_rating).setOnClickListener(v -> shopViewModel.filterHighRating());
-        findViewById(R.id.filter_low_to_high).setOnClickListener(v -> shopViewModel.filterLowToHighPrice());
-        findViewById(R.id.filter_high_to_low).setOnClickListener(v -> shopViewModel.filterHighToLowPrice());
+            }
+        });
     }
 }

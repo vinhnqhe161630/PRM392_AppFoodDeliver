@@ -180,7 +180,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintTop_toBottomOf="@id/relativeLayout">
 
@@ -213,77 +213,10 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvTitle">
-
-                        <!-- Filter: Bán chạy -->
-                        <TextView
-                            android:id="@+id/filter_best_seller"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/filter_background"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="Bán chạy"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-
-                        <!-- Filter: Đánh giá cao -->
-                        <TextView
-                            android:id="@+id/filter_high_rating"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/filter_background"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="Đánh giá"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-
-                        <!-- Filter: Giá thấp đến cao -->
-                        <TextView
-                            android:id="@+id/filter_low_to_high"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/filter_background"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="Giá thấp"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-
-                        <!-- Filter: Giá cao đến thấp -->
-                        <TextView
-                            android:id="@+id/filter_high_to_low"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/filter_background"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="Giá cao"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/productRecyclerView2"
                         android:layout_width="match_parent"
-                        android:layout_height="420dp"
+                        android:layout_height="548dp"
 
                         android:layout_marginBottom="76dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

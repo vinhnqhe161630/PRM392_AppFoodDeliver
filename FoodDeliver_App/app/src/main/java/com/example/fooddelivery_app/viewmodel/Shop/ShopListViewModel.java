@@ -55,28 +55,6 @@ public class ShopListViewModel extends ViewModel {
         loadAllShops();  // Re-fetch the data from the repository
     }
 
-    public void filterBestSellers() {
-        List<Shop> highToLowPriceShops = new ArrayList<>(originalShops);
-        Collections.sort(highToLowPriceShops, (s1, s2) -> Double.compare(s1.getTotalOrder(), s2.getTotalOrder()));
-        allShops.setValue(highToLowPriceShops);
-    }
 
-    public void filterHighRating() {
-        List<Shop> highRatingShops = new ArrayList<>(originalShops);
-        Collections.sort(highRatingShops, (s1, s2) -> Double.compare(s2.getVote(), s1.getVote()));
-        allShops.setValue(highRatingShops);
-    }
-
-    public void filterLowToHighPrice() {
-        List<Shop> lowToHighPriceShops = new ArrayList<>(originalShops);
-        Collections.sort(lowToHighPriceShops, Comparator.comparingDouble(Shop::getTotalOrder));
-        allShops.setValue(lowToHighPriceShops);
-    }
-
-    public void filterHighToLowPrice() {
-        List<Shop> highToLowPriceShops = new ArrayList<>(originalShops);
-        Collections.sort(highToLowPriceShops, (s1, s2) -> Double.compare(s2.getTotalOrder(), s1.getTotalOrder()));
-        allShops.setValue(highToLowPriceShops);
-    }
 
 }
