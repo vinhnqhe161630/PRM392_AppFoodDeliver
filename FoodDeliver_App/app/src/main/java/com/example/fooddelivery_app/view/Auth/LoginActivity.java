@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private EditText emailEditText, passwordEditText;
+    private TextView forgotPasswordButton;
     private Button loginButton;
     private Button signupButton;
 
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.rgbtn);
+        forgotPasswordButton = findViewById(R.id.forgotpass);
 
         // Khởi tạo ViewModel
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -88,6 +91,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Chuyển hướng đến Activity chính (MainActivity)
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+                finish(); // Kết thúc Activity đăng nhập
+            }
+
+        });
+        forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Chuyển hướng đến Activity chính (MainActivity)
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
                 finish(); // Kết thúc Activity đăng nhập
             }

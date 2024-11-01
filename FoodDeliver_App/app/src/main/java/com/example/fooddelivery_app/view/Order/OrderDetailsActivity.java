@@ -18,6 +18,7 @@ import com.example.fooddelivery_app.adapter.OrderDetailsAdapter;
 import com.example.fooddelivery_app.model.Order.OrderDetails;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
+import com.example.fooddelivery_app.view.Shop.ShopListActivity;
 import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
 import com.example.fooddelivery_app.viewmodel.Order.OrderListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -74,7 +75,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_shop:
                     // Open CartActivity when Cart menu item is clicked
-                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    Intent shopIntent = new Intent(this, ShopListActivity.class);
                     startActivity(shopIntent);
                     finish();
                     return true;

@@ -49,7 +49,10 @@
             android:name=".view.Shop.ShopVotedActivity"
             android:exported="true" />
 
-
+        <activity
+            android:name=".view.Shop.ShopListActivity"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".view.Auth.LoginActivity"
 

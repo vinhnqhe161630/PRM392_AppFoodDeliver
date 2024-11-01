@@ -1,5 +1,6 @@
 package com.example.fooddelivery_app.view.Auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,14 +20,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private ForgotPassViewModel forgotPassViewModel;
     private EditText emailEditText;
-    private Button forgotbtn;
+    private Button forgotbtn,logInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_forgot_password);
-
+        logInButton =findViewById(R.id.lgbtn);
         emailEditText = findViewById(R.id.emailforgot);
         forgotbtn = findViewById(R.id.forgotbtn);
         forgotPassViewModel = new ViewModelProvider(this).get(ForgotPassViewModel.class);
@@ -60,6 +61,18 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 }
 
             }
+        });
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Chuyển hướng đến Activity chính (MainActivity)
+                Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish(); // Kết thúc Activity đăng nhập
+            }
+
         });
 
 
