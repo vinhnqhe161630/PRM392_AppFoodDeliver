@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Shop.Shop;
 import com.example.fooddelivery_app.view.Shop.FoodDetailActivity;
+import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 
 import java.util.List;
 
@@ -59,8 +60,8 @@ public class BestAdapter extends RecyclerView.Adapter<BestAdapter.ShopViewHolder
 
         Glide.with(context).load(shop.getImg()).into(holder.imgShop);
         holder.imgShop.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FoodDetailActivity.class);
-            intent.putExtra("foodId", shop.getId().toString());
+            Intent intent = new Intent(context, ShopDetailActivity.class);
+            intent.putExtra("ShopId", shop.getId().toString());
             context.startActivity(intent);
         });
     }

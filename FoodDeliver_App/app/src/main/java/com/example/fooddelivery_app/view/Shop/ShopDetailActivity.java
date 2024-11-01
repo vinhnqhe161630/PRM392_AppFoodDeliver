@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.FoodAdapter;
 import com.example.fooddelivery_app.model.Food.FoodDto;
@@ -41,6 +43,7 @@ public class ShopDetailActivity extends AppCompatActivity {
     private TextView tvShopName, tvAddress, tvEmail, tvPhone;
     private RatingBar ratingBar;
     private List<FoodDto> foodList;
+    private ImageView imgShop;
     private static final String TAG = "ShopDetailActivity";
 
     @SuppressLint("MissingInflatedId")
@@ -79,7 +82,7 @@ public class ShopDetailActivity extends AppCompatActivity {
         tvAddress = findViewById(R.id.address);
         tvEmail = findViewById(R.id.email);
         tvPhone = findViewById(R.id.phone);
-
+        imgShop = findViewById(R.id.imgShop);
         ratingBar = findViewById(R.id.ratingBar1);
 
         String accountId = getIntent().getStringExtra("ShopId");
@@ -203,7 +206,9 @@ public class ShopDetailActivity extends AppCompatActivity {
         tvPhone.setText("Phone: " + account.getPhone());
 
         float averageRating = (float) account.calculateShopAverageRating(); // Make sure this method returns a float
-
+        Glide.with(ShopDetailActivity.this)
+                .load(account.getImg())
+                .into(imgShop);
         // Set the RatingBar to the average rating
         ratingBar.setRating(averageRating);
     }
