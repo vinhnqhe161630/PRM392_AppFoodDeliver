@@ -23,6 +23,45 @@ namespace FoodDeliver_API.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetFood()
+        {
+
+            var foods = await _context.Foods.Include(x => x.Account).Include(x => x.Comments)
+              .ToListAsync();
+            List<FoodDto> foodDtos = new List<FoodDto>();
+            foreach(var food in foods)
+            {
+                // Map to FoodDto
+                var foodDto = new FoodDto
+                {
+                    Id = food.Id,
+                    Name = food.Name,
+                    Price = food.Price,
+                    Description = food.Description,
+                    Img = food.Img,
+                    Status = food.Status,
+                    Account = food.Account != null ? new ShopFoodDto
+                    {
+                        Id = food.Account.Id,
+                        Name = food.Account.Name,
+                        Img = food.Account.Img,
+                        Address = food.Account.Address
+                    } : null,
+                    Comments = food.Comments.Select(c => new CommentDto
+                    {
+                        Id = c.Id,
+                        Content = c.Content,
+                        Vote = c.Vote,
+
+                    }).ToList()
+                };
+                foodDtos.Add(foodDto);
+            }
+
+            return Ok(foodDtos);
+        }
+
         // GET: api/foods/account/{accountId}
         [HttpGet("account/{accountId}")]
         public async Task<ActionResult<IEnumerable<Food>>> GetFoodsByAccountId(Guid accountId)

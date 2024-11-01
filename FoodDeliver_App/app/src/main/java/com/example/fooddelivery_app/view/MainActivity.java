@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         // Set up layout managers for the RecyclerViews
         shopsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        foodsRecyclerView.setLayoutManager(layoutManager);
+
+        foodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ShopAdapter shopsAdapter = new ShopAdapter();
         FoodAdapter foodsAdapter = new FoodAdapter(this, new ArrayList<>());

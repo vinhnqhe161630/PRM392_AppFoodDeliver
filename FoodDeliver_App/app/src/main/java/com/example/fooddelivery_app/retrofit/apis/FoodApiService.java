@@ -24,7 +24,7 @@ import retrofit2.http.Path;
 
 
 public interface FoodApiService {
-    @GET("Food")
+    @GET("Foods")
     Call<List<FoodDto>> getFoods();
 
     @GET("Foods/account/{accountId}")
