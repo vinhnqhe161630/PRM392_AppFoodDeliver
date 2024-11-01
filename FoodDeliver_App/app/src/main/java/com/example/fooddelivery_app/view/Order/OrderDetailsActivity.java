@@ -36,7 +36,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String orderIdString = intent.getStringExtra("ORDER_ID");
         UUID orderId = UUID.fromString(orderIdString);
-//UUID orderId = UUID.fromString("a7c12ee7-59c1-40f3-7296-08dcf99050c7");
+        //UUID orderId = UUID.fromString("256658e3-798d-403d-af53-08dcfa6a0139");
 
         orderViewModel.getOrderDetailsByUserId(orderId,this).observe(this, orders -> {
             TextView totalPrice = findViewById(R.id.totalPrice);
@@ -44,7 +44,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 OrderDetailsAdapter orderAdapter = new OrderDetailsAdapter(orders);
                 recyclerView.setAdapter(orderAdapter);
             } else {
-                totalPrice.setText("null");
+                totalPrice.setText("null"+orderIdString);
             }
         });
 
