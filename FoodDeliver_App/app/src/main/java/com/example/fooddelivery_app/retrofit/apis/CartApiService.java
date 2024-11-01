@@ -11,6 +11,7 @@ import java.util.UUID;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -24,4 +25,10 @@ public interface CartApiService {
     Call<List<Cart>> getCartByUserId(@Path("userid") UUID userId);
     @POST("order/checkout/{userid}")
     Call<AddOrder> checkOut(@Path("userid") UUID userId);
+    @DELETE("cart/{cartId}")
+    Call<Cart> deleteCart(@Path("cartId") UUID cartId);
+    @POST("cart/increase/{cartId}")
+    Call<Cart> increaseCart(@Path("cartId") UUID cartId);
+    @POST("cart/decrease/{cartId}")
+    Call<Cart> decreaseCart(@Path("cartId") UUID cartId);
 }

@@ -22,7 +22,23 @@ namespace FoodDeliver_API.Services
                 .Include(o => o.Account)
                 .Include(o=>o.Food)
                 .Where(x => x.UserId == userId).ToListAsync();
-        }   
+        }
+        public async Task<Cart?> getCartByCartId(Guid cartId)
+        {
+            try
+            {
+                Cart a = await _context.Carts.Include(o => o.Shop)
+                .Include(o => o.Account)
+                .Include(o => o.Food)
+                .FirstOrDefaultAsync(o => o.Id == cartId);
+                return a;
+            }
+            catch
+            {
+                return null;
+            }
+            
+        }
 
         public async Task createCart(Cart order)
         {
@@ -40,8 +56,28 @@ namespace FoodDeliver_API.Services
             }
           
         }
-        
-            public async Task<Guid> getShopByFoodId(Guid foodId)
+        public async Task deleteCart(Cart cart)
+        {
+            _context.Carts.Remove(cart);
+            await _context.SaveChangesAsync();
+
+        }
+        public async Task increaseCart(Cart cart)
+        {
+            cart.Quantity += 1;
+            _context.Carts.Remove(cart);
+            await _context.SaveChangesAsync();
+
+        }
+        public async Task decreaseCart(Cart cart)
+        {
+           
+            cart.Quantity -= 1;
+            _context.Carts.Remove(cart);
+            await _context.SaveChangesAsync();
+
+        }
+        public async Task<Guid> getShopByFoodId(Guid foodId)
         {
            Food food= await _context.Foods.FirstOrDefaultAsync(o=>o.Id==foodId);
             if (food == null) return Guid.Empty;

@@ -46,13 +46,76 @@ namespace FoodDeliver_API.Controllers
 
         }
         
-        [HttpDelete]
-		public async Task<IActionResult> deleteCart(AddCart addcart)
+        [HttpDelete("{cartId}")]
+		public async Task<IActionResult> deleteCart(Guid cartId)
 		{
-			var cart = _mapper.Map<Cart>(addcart);
 
-
-			return Ok("Add ok");
+            try
+            {
+                var cart = await _cartService.getCartByCartId(cartId);
+                if(cart != null)
+                {
+                    _cartService.deleteCart(cart);
+                    return Ok(cart);
+                }
+                else
+                {
+                    return BadRequest("delete null");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 		}
-	}
+        [HttpPost("increase")]
+        public async Task<IActionResult> increaseCart(Guid cartId)
+        {
+            try
+            {
+                var cart = await _cartService.getCartByCartId(cartId);
+                if (cart != null)
+                {
+                    _cartService.increaseCart(cart);
+                    return Ok(cart);
+                }
+                else
+                {
+                    return BadRequest("increase null");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("decrease")]
+        public async Task<IActionResult> decreaseCart(Guid cartId)
+        {
+            try
+            {
+                var cart = await _cartService.getCartByCartId(cartId);
+                if (cart != null)
+                {
+                    if (cart.Quantity > 0)
+                    {
+                        _cartService.decreaseCart(cart);
+                        return Ok(cart);
+                    }
+                    else
+                    {
+                        return BadRequest("decrease null");
+                    }
+                }
+                else
+                {
+                    return BadRequest("decrease null");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    }
 }

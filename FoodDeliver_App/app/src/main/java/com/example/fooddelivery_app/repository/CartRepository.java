@@ -72,6 +72,72 @@ public class CartRepository {
         return liveData;
 
     }
+    public LiveData<Cart> deleteCart(UUID cartId) {
+        MutableLiveData<Cart> liveData = new MutableLiveData<>();
+        Call<Cart> call = cartApiService.deleteCart(cartId);
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                if (response.isSuccessful()) {
+                    // Update LiveData with the fetched data
+                    liveData.setValue(response.body());
+                } else {
+                    // Handle the response error here if needed
+                    liveData.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+                // Handle the failure, e.g., log error or notify user
+                liveData.setValue(null);
+            }
+        });
+        return liveData;
+    }
+    public LiveData<Cart> increaseCart(UUID cartId) {
+        MutableLiveData<Cart> liveData = new MutableLiveData<>();
+        Call<Cart> call = cartApiService.increaseCart(cartId);
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                if (response.isSuccessful()) {
+                    // Update LiveData with the fetched data
+                    liveData.setValue(response.body());
+                } else {
+                    // Handle the response error here if needed
+                    liveData.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+                // Handle the failure, e.g., log error or notify user
+                liveData.setValue(null);
+            }
+        });
+        return liveData;
+    }
+    public LiveData<Cart> decreaseCart(UUID cartId) {
+        MutableLiveData<Cart> liveData = new MutableLiveData<>();
+        Call<Cart> call = cartApiService.decreaseCart(cartId);
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                if (response.isSuccessful()) {
+                    // Update LiveData with the fetched data
+                    liveData.setValue(response.body());
+                } else {
+                    // Handle the response error here if needed
+                    liveData.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+                // Handle the failure, e.g., log error or notify user
+                liveData.setValue(null);
+            }
+        });
+        return liveData;
+    }
     public LiveData<List<Cart>> getCartByUserId(UUID userId) {
         MutableLiveData<List<Cart>> liveData = new MutableLiveData<>();
         Call<List<Cart>> call = cartApiService.getCartByUserId(userId);
