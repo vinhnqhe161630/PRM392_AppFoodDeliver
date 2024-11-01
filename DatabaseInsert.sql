@@ -51,20 +51,21 @@ INSERT INTO [dbo].[Foods]
            (CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier), 'Mì Quảng', 45.00, 'Món mì quảng đặc sản miền Trung', 'mi_quang.png', 1, CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
 GO
 
-
 INSERT INTO [dbo].[Comments]
-           ([Id]
-           ,[Content]
-           ,[Vote]
-           ,[UserID]
-           ,[FoodID])
-     VALUES
-           (CAST('C0000001-0000-0000-0000-000000000001' AS uniqueidentifier), N'Phở bò rất ngon, tôi rất thích!', 5, CAST('A0000001-0000-0000-0000-000000000001' AS uniqueidentifier), CAST('F0000001-0000-0000-0000-000000000001' AS uniqueidentifier)),
-           (CAST('C0000002-0000-0000-0000-000000000002' AS uniqueidentifier), N'Bánh mì khá ổn, nhưng hơi ngấy.', 4, CAST('A0000002-0000-0000-0000-000000000002' AS uniqueidentifier), CAST('F0000002-0000-0000-0000-000000000002' AS uniqueidentifier)),
-           (CAST('C0000003-0000-0000-0000-000000000003' AS uniqueidentifier), N'Gỏi cuốn tươi ngon, rất thích hợp cho mùa hè.', 5, CAST('A0000001-0000-0000-0000-000000000001' AS uniqueidentifier), CAST('F0000003-0000-0000-0000-000000000003' AS uniqueidentifier)),
-           (CAST('C0000004-0000-0000-0000-000000000004' AS uniqueidentifier), N'Cơm tấm sườn nướng quá tuyệt vời!', 5, CAST('A0000003-0000-0000-0000-000000000003' AS uniqueidentifier), CAST('F0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
-           (CAST('C0000005-0000-0000-0000-000000000005' AS uniqueidentifier), N'Mì Quảng rất ngon, sẽ quay lại!', 5, CAST('A0000002-0000-0000-0000-000000000002' AS uniqueidentifier), CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
+        ([Id]
+        ,[Content]
+        ,[Vote]
+        ,[CommentDate]
+        ,[UserID]
+        ,[FoodID])
+  VALUES
+        (CAST('C0000001-0000-0000-0000-000000000001' AS uniqueidentifier), N'Phở bò rất ngon, tôi rất thích!', 5, '2024-10-31 10:30:00.0000000', CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier), CAST('F0000001-0000-0000-0000-000000000001' AS uniqueidentifier)),
+        (CAST('C0000002-0000-0000-0000-000000000002' AS uniqueidentifier), N'Bánh mì khá ổn, nhưng hơi ngấy.', 4, '2024-10-31 11:15:00.0000000', CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier), CAST('F0000002-0000-0000-0000-000000000002' AS uniqueidentifier)),
+        (CAST('C0000003-0000-0000-0000-000000000003' AS uniqueidentifier), N'Gỏi cuốn tươi ngon, rất thích hợp cho mùa hè.', 5, '2024-10-31 12:00:00.0000000', CAST('A0000006-0000-0000-0000-000000000006' AS uniqueidentifier), CAST('F0000003-0000-0000-0000-000000000003' AS uniqueidentifier)),
+        (CAST('C0000004-0000-0000-0000-000000000004' AS uniqueidentifier), N'Cơm tấm sườn nướng quá tuyệt vời!', 5, '2024-10-31 12:45:00.0000000', CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier), CAST('F0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
+        (CAST('C0000005-0000-0000-0000-000000000005' AS uniqueidentifier), N'Mì Quảng rất ngon, sẽ quay lại!', 5, '2024-10-31 13:30:00.0000000', CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier), CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
 GO
+
 
 INSERT INTO [dbo].[Carts]
            ([Id]
