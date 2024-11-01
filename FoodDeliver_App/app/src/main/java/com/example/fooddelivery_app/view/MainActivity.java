@@ -19,6 +19,7 @@ import com.example.fooddelivery_app.adapter.ShopAdapter;
 import com.example.fooddelivery_app.view.Auth.LoginActivity;
 import com.example.fooddelivery_app.view.Order.CartActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.example.fooddelivery_app.view.Shop.FoodDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
 import com.example.fooddelivery_app.viewmodel.Shop.MainViewModel;
