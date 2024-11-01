@@ -2,13 +2,13 @@
 
 
     <item
-        android:id="@+id/navigation_you"
-        android:title="You"
-        android:icon="@drawable/baseline_account_circle_24" />
+        android:id="@+id/navigation_shop"
+        android:title="Shop"
+        android:icon="@drawable/shopping_bag" />
 
     <item
         android:id="@+id/navigation_More"
-        android:title="More"
+        android:title="Order"
         android:icon="@drawable/clipboard" />
 
     <item
@@ -23,7 +23,7 @@
         android:icon="@drawable/baseline_shopping_cart_24" />
 
     <item
-        android:id="@+id/navigation_Menu"
-        android:title="Menu"
-        android:icon="@drawable/baseline_menu_24" />
+        android:id="@+id/navigation_Rank"
+        android:title="Rank"
+        android:icon="@drawable/ranking" />
 </menu>

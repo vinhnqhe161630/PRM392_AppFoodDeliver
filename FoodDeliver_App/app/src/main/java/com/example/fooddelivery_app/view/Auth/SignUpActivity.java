@@ -18,7 +18,7 @@ import com.example.fooddelivery_app.viewmodel.Auth.SignUpViewModel;
 public class SignUpActivity extends AppCompatActivity {
     private SignUpViewModel singUpViewModel;
     private EditText emailEditText, passwordEditText,usernameEditText;
-    private Button signUpButton;
+    private Button signUpButton,logInButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordSignUp);
         usernameEditText = findViewById(R.id.usernameSignUp);
         signUpButton = findViewById(R.id.signUpButton);
+        logInButton = findViewById(R.id.lgbtn);
         // Khởi tạo ViewModel
         singUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
@@ -60,6 +61,18 @@ public class SignUpActivity extends AppCompatActivity {
                 // Hiển thị lỗi nếu có
                 Toast.makeText(SignUpActivity.this, "SignUP  "+error, Toast.LENGTH_SHORT).show();
             }
+        });
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Chuyển hướng đến Activity chính (MainActivity)
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish(); // Kết thúc Activity đăng nhập
+            }
+
         });
     }
 }

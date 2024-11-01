@@ -28,6 +28,10 @@ import com.example.fooddelivery_app.model.Comment.PurchaseCheckDto;
 import com.example.fooddelivery_app.model.Food.FoodDto;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.FoodApiService;
+import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Order.CartActivity;
+import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +63,8 @@ public class FoodDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productdetail);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
         // Initialize UI components
         productNameTextView = findViewById(R.id.productDetailTitle);
         productImageView = findViewById(R.id.productImageView);
@@ -81,7 +86,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         String userId = getUserIdFromToken(FoodDetailActivity.this);
         // Get the foodId from the Intent
-        String foodId = getIntent().getStringExtra("foodId");
+        String foodId = "F0000005-0000-0000-0000-000000000005";
         if (foodId != null) {
             getFoodDetail(foodId);
             getFoodQuantity(foodId);
@@ -91,7 +96,41 @@ public class FoodDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Food ID is missing", Toast.LENGTH_SHORT).show();
             finish();
         }
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_cart:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent cartIntent = new Intent(this, CartActivity.class);
+                    startActivity(cartIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_More:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
+                default:
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                    return true;
+                // Handle other menu items here
 
+            }
+        });
 
 
         submitCommentButton.setOnClickListener(new View.OnClickListener() {

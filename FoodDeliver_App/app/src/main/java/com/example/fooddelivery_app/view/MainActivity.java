@@ -16,6 +16,8 @@ import com.example.fooddelivery_app.adapter.FoodAdapter;
 import com.example.fooddelivery_app.adapter.ShopAdapter;
 import com.example.fooddelivery_app.view.Order.CartActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
+import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
 import com.example.fooddelivery_app.viewmodel.Shop.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -76,23 +78,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         // Set a listener for menu item clicks
         // NavigationBarView. setOnItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_cart:
-                    // Open CartActivity when Cart menu item is clicked
+                    // Open OrderActivity when Order menu item is clicked
                     Intent cartIntent = new Intent(this, CartActivity.class);
                     startActivity(cartIntent);
                     finish();
                     return true;
                 case R.id.navigation_More:
-                    // Open CartActivity when Cart menu item is clicked
+                    // Open OrderActivity when Order menu item is clicked
                     Intent orderIntent = new Intent(this, OrderListActivity.class);
                     startActivity(orderIntent);
                     finish();
                     return true;
-
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
                 default:
                     Intent homeIntent = new Intent(this, MainActivity.class);
                     startActivity(homeIntent);

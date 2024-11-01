@@ -18,12 +18,13 @@ import com.example.fooddelivery_app.adapter.CartAdapter;
 import com.example.fooddelivery_app.model.Order.Cart;
 import com.example.fooddelivery_app.model.Order.Order;
 import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
+import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
 import com.example.fooddelivery_app.viewmodel.Order.CartListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.UUID;
 
 public class CartActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class CartActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cart);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.menu_cart);
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
         CartListViewModel cartViewModel = new ViewModelProvider(this).get(CartListViewModel.class);
         Button checkout=findViewById(R.id.checkoutButton);
@@ -79,7 +81,18 @@ public class CartActivity extends AppCompatActivity {
                     startActivity(orderIntent);
                     finish();
                     return true;
-
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
                 default:
                     Intent homeIntent = new Intent(this, MainActivity.class);
                     startActivity(homeIntent);

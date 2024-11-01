@@ -1,6 +1,7 @@
 package com.example.fooddelivery_app.view.Shop;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,10 @@ import com.example.fooddelivery_app.model.Shop.ShopDTO;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.FoodApiService;
 import com.example.fooddelivery_app.retrofit.apis.ShopApiService;
+import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Order.CartActivity;
+import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -43,7 +48,8 @@ public class ShopDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopdetail);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
         recyclerView = findViewById(R.id.productRecyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         TextView filterLowToHigh = findViewById(R.id.filter_low_to_high);
@@ -77,7 +83,7 @@ public class ShopDetailActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar1);
 
         // Giả sử accountId đã được cung cấp
-        String accountId = "2cda8ad7-1ea9-4a56-0daa-08dcf985ada7"; // Thay bằng accountId thực tế
+        String accountId = "60396245-056F-40BE-3D0D-08DCF8F46B6C"; // Thay bằng accountId thực tế
         getAccountById(accountId);
         // Gọi API
         FoodApiService apiService = RetrofitUtility.getClient().create(FoodApiService.class);
@@ -103,6 +109,41 @@ public class ShopDetailActivity extends AppCompatActivity {
                 Log.e(TAG, "Error: " + t.getMessage());
                 Toast.makeText(ShopDetailActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(ShopDetailActivity.this, "Failed to load food list", Toast.LENGTH_SHORT).show();
+            }
+        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_cart:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent cartIntent = new Intent(this, CartActivity.class);
+                    startActivity(cartIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_More:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
+                default:
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                    return true;
+                // Handle other menu items here
+
             }
         });
     }
