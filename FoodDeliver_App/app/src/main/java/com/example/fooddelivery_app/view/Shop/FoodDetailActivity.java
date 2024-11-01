@@ -86,7 +86,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         String userId = getUserIdFromToken(FoodDetailActivity.this);
         // Get the foodId from the Intent
-        String foodId = "F0000005-0000-0000-0000-000000000005";
+        String foodId = getIntent().getStringExtra("foodId");
         if (foodId != null) {
             getFoodDetail(foodId);
             getFoodQuantity(foodId);

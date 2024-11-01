@@ -82,8 +82,8 @@ public class ShopDetailActivity extends AppCompatActivity {
 
         ratingBar = findViewById(R.id.ratingBar1);
 
-        // Giả sử accountId đã được cung cấp
-        String accountId = "60396245-056F-40BE-3D0D-08DCF8F46B6C"; // Thay bằng accountId thực tế
+        String accountId = getIntent().getStringExtra("ShopId");
+
         getAccountById(accountId);
         // Gọi API
         FoodApiService apiService = RetrofitUtility.getClient().create(FoodApiService.class);
