@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,11 +27,13 @@ import com.example.fooddelivery_app.model.Comment.AddCommentDto;
 import com.example.fooddelivery_app.model.Comment.CommentDto;
 import com.example.fooddelivery_app.model.Comment.PurchaseCheckDto;
 import com.example.fooddelivery_app.model.Food.FoodDto;
+import com.example.fooddelivery_app.model.Order.AddCart;
 import com.example.fooddelivery_app.retrofit.RetrofitUtility;
 import com.example.fooddelivery_app.retrofit.apis.FoodApiService;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Order.CartActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.example.fooddelivery_app.viewmodel.Order.CartListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
@@ -40,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,6 +61,8 @@ public class FoodDetailActivity extends AppCompatActivity {
     private EditText commentInput;
     private RatingBar commentRatingBar;
     private Button submitCommentButton;
+    private Button addToCart;
+
     CardView cardShop;
     private boolean hasUserCommented = false , hasPurchased = false;;
     @Override
@@ -131,8 +137,6 @@ public class FoodDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
         submitCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +154,34 @@ public class FoodDetailActivity extends AppCompatActivity {
 
                 else {
                     addComment(commentContent, rating, userId, foodId);
+                }
+            }
+        });
+        addToCart=findViewById(R.id.buy_button);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userIdString = getUserIdFromToken(FoodDetailActivity.this);
+                UUID userId = UUID.fromString(userIdString);
+                AddCart cart=new AddCart();
+                cart.setUserId(userId);
+                UUID foodID=UUID.fromString(foodId);
+                cart.setFoodId(foodID);
+                cart.setQuantity(1);
+                CartListViewModel cartViewModel = new ViewModelProvider(FoodDetailActivity.this).get(CartListViewModel.class);
+                cartViewModel.addToCart(cart).
+                        observe(FoodDetailActivity.this, message -> {
+                            if (message != null) {
+                                Intent orderIntent = new Intent(FoodDetailActivity.this, CartActivity.class);
+                                startActivity(orderIntent);
+                                finish();
+                            }else{
+                                Toast.makeText(FoodDetailActivity.this, "add to cart failed. Please try again.", Toast.LENGTH_SHORT).show();                }
+                        });
+                if (userIdString.isEmpty()) {
+                    Toast.makeText(FoodDetailActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
                 }
             }
         });
