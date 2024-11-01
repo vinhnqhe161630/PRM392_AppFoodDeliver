@@ -65,6 +65,9 @@ public class ShopDetailActivity extends AppCompatActivity {
             }
         });
 
+        TextView sortByRatingButton = findViewById(R.id.filter_high_rating);
+        sortByRatingButton.setOnClickListener(v -> foodAdapter.sortFoodListByRating());
+
         // Initialize UI components
         tvShopName = findViewById(R.id.tvShopName);
         tvAddress = findViewById(R.id.address);

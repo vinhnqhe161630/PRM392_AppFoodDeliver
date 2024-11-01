@@ -95,6 +95,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         notifyDataSetChanged();
     }
 
+    public void sortFoodListByRating() {
+        Collections.sort(foodList, (food1, food2) -> Double.compare(food2.calculateAverageRating(), food1.calculateAverageRating()));
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
