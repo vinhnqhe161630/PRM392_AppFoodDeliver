@@ -1,11 +1,13 @@
 package com.example.fooddelivery_app.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,7 @@ import com.example.fooddelivery_app.R;
 
 import com.example.fooddelivery_app.adapter.FoodAdapter;
 import com.example.fooddelivery_app.adapter.ShopAdapter;
+import com.example.fooddelivery_app.view.Auth.LoginActivity;
 import com.example.fooddelivery_app.view.Order.CartActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
 import com.example.fooddelivery_app.viewmodel.Shop.MainViewModel;
@@ -36,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up layout managers for the RecyclerViews
         shopsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        foodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        foodsRecyclerView.setLayoutManager(layoutManager);
 
         ShopAdapter shopsAdapter = new ShopAdapter();
         FoodAdapter foodsAdapter = new FoodAdapter(this, new ArrayList<>());
@@ -102,5 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
+
+
 }
