@@ -36,6 +36,12 @@ public class CartListViewModel extends ViewModel {
     public LiveData<Cart> addToCart(AddCart addCart) {
         return  cartRepository.addToCart(addCart);
     }
+    public LiveData<Cart> increaseCart(UUID cartId) {
+        return  cartRepository.increaseCart(cartId);
+    }
+    public LiveData<Cart> decreaseCart(UUID cartId) {
+        return  cartRepository.decreaseCart(cartId);
+    }
 
     public static String getUserIdFromToken(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);

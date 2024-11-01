@@ -1,14 +1,19 @@
 package com.example.fooddelivery_app.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery_app.R;
@@ -67,20 +72,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             decrease=itemView.findViewById(R.id.buttonDecrease);
             delete=itemView.findViewById(R.id.deleteButton);
             increase.setOnClickListener(v -> {
-                CartListViewModel cartViewModel = new ViewModelProvider(v.getContext()).get(CartListViewModel.class);
-                cartViewModel.addToCart(cart).
-                        observe(FoodDetailActivity.this, message -> {
-                            if (message != null) {
-                                Intent orderIntent = new Intent(FoodDetailActivity.this, CartActivity.class);
-                                startActivity(orderIntent);
-                                finish();
-                            }else{
-                                Toast.makeText(FoodDetailActivity.this, "add to cart failed. Please try again.", Toast.LENGTH_SHORT).show();                }
-                        });
+                // Ensure the context is an instance of ViewModelStoreOwner
+                if (v.getContext() instanceof ViewModelStoreOwner) {
+                    ViewModelStoreOwner viewModelStoreOwner = (ViewModelStoreOwner) v.getContext();
+                    CartListViewModel cartViewModel = new ViewModelProvider(viewModelStoreOwner).get(CartListViewModel.class);
 
-                Intent intent = new Intent(v.getContext(), CartActivity.class);
-                v.getContext().startActivity(intent);
+                    cartViewModel.increaseCart(cartView.getId()).observe((LifecycleOwner) viewModelStoreOwner, message -> {
+                        if (message != null) {
+                            Intent intent = new Intent(v.getContext(), CartActivity.class);
+                            v.getContext().startActivity(intent);
+                        } else {
+                            Toast.makeText(v.getContext(), "Add to cart failed. Please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(v.getContext(), "Context is not a ViewModelStoreOwner", Toast.LENGTH_SHORT).show();
+                }
             });
+
         }
     }
 }
