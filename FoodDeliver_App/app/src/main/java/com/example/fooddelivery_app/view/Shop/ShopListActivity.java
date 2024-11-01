@@ -1,6 +1,7 @@
 package com.example.fooddelivery_app.view.Shop;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,5 +34,26 @@ public class ShopListActivity extends AppCompatActivity {
 
         // Set adapters to the RecyclerViews
         shoprecyclerView.setAdapter(shopAdapter);
+
+        // Setup SearchView listener
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                shopViewModel.searchShops(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                shopViewModel.searchShops(newText);
+                return true;
+            }
+        });
+
+        findViewById(R.id.filter_best_seller).setOnClickListener(v -> shopViewModel.filterBestSellers());
+        findViewById(R.id.filter_high_rating).setOnClickListener(v -> shopViewModel.filterHighRating());
+        findViewById(R.id.filter_low_to_high).setOnClickListener(v -> shopViewModel.filterLowToHighPrice());
+        findViewById(R.id.filter_high_to_low).setOnClickListener(v -> shopViewModel.filterHighToLowPrice());
     }
 }
