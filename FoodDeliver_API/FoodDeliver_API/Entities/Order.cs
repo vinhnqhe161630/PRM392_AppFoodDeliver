@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDeliver_API.Entities
-{ 
+{
+    [Table("Orders")] 
 	public class Order
     {
         public Guid Id { get; set; }

@@ -9,6 +9,8 @@ namespace FoodDeliver_API.Entities
         public string Content { get; set; }
         public int Vote { get; set; }
 
+        public DateTime CommentDate { get; set; }
+
         // Foreign Keys
         [JsonIgnore]
         public Guid UserID { get; set; }

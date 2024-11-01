@@ -8,45 +8,36 @@
     android:layout_height="match_parent"
     tools:context=".view.Auth.SignUpActivity">
 
+
     <TextView
         android:id="@+id/heading1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
         android:gravity="center"
         android:letterSpacing="0.01"
         android:lineSpacingExtra="-10sp"
-        android:text="Forgot Password"
+        android:text="Sign Up"
         android:textColor="#715CF8"
         android:textSize="45sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="163dp">
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        tools:layout_editor_absoluteX="0dp">
 
     </TextView>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Enter your email"
-        android:textColor="#715CF8"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="223dp">
-
-    </TextView>
-
-    <TextView
-        android:paddingStart="40dp"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:letterSpacing="0.02"
+        android:paddingStart="40dp"
         android:text="Please enter your name"
         android:textAlignment="textStart"
         android:textColor="#545454"
         android:textSize="10dp"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="320dp">
+        app:layout_constraintBottom_toTopOf="@+id/usernameSignUp"
+        tools:layout_editor_absoluteX="60dp">
 
     </TextView>
 
@@ -79,8 +70,8 @@
         android:textAlignment="textStart"
         android:textColor="#545454"
         android:textSize="10dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="389dp">
+        app:layout_constraintBottom_toTopOf="@+id/emailSignUp"
+        tools:layout_editor_absoluteX="0dp">
 
     </TextView>
 
@@ -113,8 +104,8 @@
         android:textAlignment="textStart"
         android:textColor="#545454"
         android:textSize="10dp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="464dp">
+        app:layout_constraintBottom_toTopOf="@+id/passwordSignUp"
+        tools:layout_editor_absoluteX="0dp">
 
     </TextView>
 
@@ -156,12 +147,12 @@
         android:id="@+id/lgbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signupbtn"
+        android:layout_below="@+id/signUpButton"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:text="Already have an account?"
         android:textColor="#9989FD"
         android:textSize="15dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="612dp" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

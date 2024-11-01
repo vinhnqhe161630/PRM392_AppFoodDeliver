@@ -16,7 +16,7 @@ namespace FoodDeliver_API.Entities
         public bool Status { get; set; }
 
         // Navigation property
-        [JsonIgnore]
+    
         public ICollection<Food>? Foods { get; set; } = new List<Food>();
         public ICollection<Order>? Orders { get; set; } = new List<Order>();
         public ICollection<Comment>? Comments { get; set; } = new List<Comment>();

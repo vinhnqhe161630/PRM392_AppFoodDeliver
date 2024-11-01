@@ -2,6 +2,8 @@ package com.example.fooddelivery_app.model.Food;
 
 
 
+import com.example.fooddelivery_app.model.Comment.Comment;
+
 import java.util.List;
 
 public class FoodDetailDto {
@@ -113,6 +115,18 @@ public class FoodDetailDto {
         public void setUserName(String userName) {
             this.userName = userName;
         }
+    }
+    public double calculateAverageRating() {
+        if (comments == null || comments.isEmpty()) {
+            return 0; // No comments, so rating is 0
+        }
+
+        double totalRating = 0;
+        for (CommentDto comment : comments) {
+            totalRating += comment.getVote(); // Assume Comment has a getRating method
+        }
+
+        return totalRating / comments.size(); // Return the average rating
     }
 }
 

@@ -32,7 +32,10 @@ using Microsoft.EntityFrameworkCore;
                         Id = c.Id,
                         Content = c.Content,
                         Vote = c.Vote,
-                        UserName = c.User.Name
+                        CommentDate = c.CommentDate,
+                        userId = c.User.Id,
+                        UserName = c.User.Name,
+                        UserAva = c.User.Img
                     })
                     .ToListAsync();
 
@@ -55,6 +58,7 @@ using Microsoft.EntityFrameworkCore;
                 Id = Guid.NewGuid(), 
                 Content = commentDto.Content,
                 Vote = commentDto.Vote,
+                CommentDate = commentDto.CommentDate,
                 UserID = commentDto.UserID,
                 FoodID = commentDto.FoodID
             };
@@ -130,6 +134,22 @@ using Microsoft.EntityFrameworkCore;
 
             return NoContent(); // Return 204 No Content on successful deletion
         }
+        [HttpGet("check-purchase/{userId}/{foodId}")]
+        public ActionResult<PurchaseCheckDto> CheckPurchase(Guid userId, Guid foodId)
+        {
+            // Directly check for purchases without async-await
+            var hasPurchased =  _context.Order
+                .Where(order => order.UserId == userId)
+                .SelectMany(order => order.OrderDetails)
+                .Any(orderDetail => orderDetail.FoodID == foodId);
+
+            return Ok(new PurchaseCheckDto
+            {
+                FoodId = foodId,
+                HasPurchased = hasPurchased
+            });
+        }
+
     }
-    }
+}
 

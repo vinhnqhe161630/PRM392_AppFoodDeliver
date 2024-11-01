@@ -7,7 +7,7 @@ namespace FoodDeliver_API.Entities
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Food> Foods { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Cart> Carts { get; set; }

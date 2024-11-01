@@ -16,6 +16,8 @@ import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.OrderAdapter;
 import com.example.fooddelivery_app.adapter.OrderDetailsAdapter;
 import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
+import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
 import com.example.fooddelivery_app.viewmodel.Order.OrderListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,7 +29,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_orderdetails);
-
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
         OrderListViewModel orderViewModel = new ViewModelProvider(this).get(OrderListViewModel.class);
 
@@ -35,7 +36,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String orderIdString = intent.getStringExtra("ORDER_ID");
         UUID orderId = UUID.fromString(orderIdString);
-//UUID orderId = UUID.fromString("a7c12ee7-59c1-40f3-7296-08dcf99050c7");
+        //UUID orderId = UUID.fromString("256658e3-798d-403d-af53-08dcfa6a0139");
 
         orderViewModel.getOrderDetailsByUserId(orderId,this).observe(this, orders -> {
             TextView totalPrice = findViewById(R.id.totalPrice);
@@ -43,11 +44,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 OrderDetailsAdapter orderAdapter = new OrderDetailsAdapter(orders);
                 recyclerView.setAdapter(orderAdapter);
             } else {
-                totalPrice.setText("null");
+                totalPrice.setText("null"+orderIdString);
             }
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_More);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_cart:
@@ -58,6 +60,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 case R.id.navigation_More:
                     Intent orderIntent = new Intent(this, OrderListActivity.class);
                     startActivity(orderIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_shop:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, ShopDetailActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
                     finish();
                     return true;
                 default:

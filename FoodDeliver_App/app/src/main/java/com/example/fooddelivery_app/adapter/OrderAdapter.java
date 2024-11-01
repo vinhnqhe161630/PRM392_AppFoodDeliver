@@ -35,13 +35,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         Order order = orderList.get(position);
+        holder.currentOrder = order; // Set the current order
         holder.orderItemName.setText(order.getShopname());
-        holder.orderItemPrice.setText(order.getTotalAmount()+" VND");
+        holder.orderItemPrice.setText(order.getTotalAmount() + " VND");
         holder.orderStatus.setText(order.getStatus());
         holder.orderDate.setText(order.getOrderDate().toString());
-        //holder.orderID.setText(order.getId().toString());
+        holder.orderID.setText(order.getId().toString());
         // Set other order item details here
     }
+
 
     @Override
     public int getItemCount() {
@@ -53,19 +55,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         TextView orderItemPrice;
         TextView orderStatus;
         TextView orderDate;
-        //TextView orderID;
+        TextView orderID;
+        Order currentOrder;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             orderItemName = itemView.findViewById(R.id.tvShopName);
             orderItemPrice = itemView.findViewById(R.id.tvTotalAmount);
             orderDate = itemView.findViewById(R.id.tvOrderDate);
-            //orderID = itemView.findViewById(R.id.tvOrderId);
+            orderID = itemView.findViewById(R.id.tvOrderId);
             orderStatus = itemView.findViewById(R.id.tvStatus);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), OrderDetailsActivity.class);
-                // Assuming you have a method to get the orderId from the current item
                 UUID orderId = getOrderId();
                 intent.putExtra("ORDER_ID", orderId.toString());
                 v.getContext().startActivity(intent);
@@ -73,9 +75,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         }
 
         private UUID getOrderId() {
-            // Implement this method to return the orderId of the current item
-            return UUID.randomUUID(); // Replace with actual orderId retrieval logic
+            return currentOrder.getId();
         }
     }
+
 
 }

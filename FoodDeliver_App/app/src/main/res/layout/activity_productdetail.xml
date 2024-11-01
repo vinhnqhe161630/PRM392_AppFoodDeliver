@@ -199,7 +199,7 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView"
+                        android:id="@+id/cardShop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -232,8 +232,9 @@
                                 android:orientation="vertical"
                                 android:padding="10dp">
 
+
                                 <TextView
-                                    android:id="@+id/productNameTextView"
+                                    android:id="@+id/ShopNameTextView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
@@ -241,13 +242,19 @@
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
-
                                 <TextView
-                                    android:id="@+id/productInfoTextView"
+                                    android:id="@+id/ShopAddress"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
                                     android:text="Thông tin của shop"
+                                    android:textSize="14sp" />
+                                <TextView
+                                    android:id="@+id/tvFoodQuantity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Đã bán"
                                     android:textSize="14sp" />
 
                                 <LinearLayout
@@ -334,12 +341,19 @@
                             </RelativeLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Comment"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
                     <LinearLayout
+                        android:id="@+id/commentInputLayout"
                         android:layout_width="408dp"
                         android:layout_height="179dp"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toTopOf="@+id/productRecyclerView2"
+                        app:layout_constraintBottom_toTopOf="@+id/commentsRecyclerView"
                         tools:ignore="MissingConstraints">
 
                         <RelativeLayout
@@ -348,13 +362,7 @@
                             android:layout_marginTop="20sp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="8dp"
-                                android:text="Comment"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
+
                         </RelativeLayout>
 
                         <!-- EditText for Comment Input -->
@@ -367,21 +375,22 @@
                             android:padding="10dp" />
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp">
+                            android:layout_height="wrap_content">
+
 
                             <RatingBar
+                                android:id="@+id/commentRatingBar"
                                 android:layout_marginLeft="10dp"
                                 style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:progressBackgroundTint="@android:color/darker_gray"
-                                android:progressTint="@android:color/holo_orange_light"
-                                android:rating="0"
-                                android:stepSize="0.1" />
+                                android:isIndicator="false"
+                            android:numStars="5"
+                            android:progressBackgroundTint="@android:color/darker_gray"
+                            android:progressTint="@android:color/holo_orange_light"
+                            android:rating="0"
+                            android:stepSize="1" />
                         </LinearLayout>
                         <!-- Button to Submit Comment -->
                         <Button
@@ -391,8 +400,8 @@
                             android:layout_gravity="end"
                             android:layout_marginTop="8dp"
                             android:text="Gửi" />
+                        </LinearLayout>
 
-                    </LinearLayout>
 
 
                     <LinearLayout
@@ -400,7 +409,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/productRecyclerView2"
+                            android:id="@+id/commentsRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
