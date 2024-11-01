@@ -26,11 +26,26 @@ namespace FoodDeliver_API.Services
 
         public async Task createCart(Cart order)
         {
-            _context.Carts.Add(order);
-            await _context.SaveChangesAsync();
+            var cart = await _context.Carts.FirstOrDefaultAsync(o=>o.FoodId == order.FoodId&&o.UserId==order.UserId);
+            if (cart == null)
+            {
+                _context.Carts.Add(order);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                cart.Quantity += 1;
+                _context.Carts.Update(cart);
+                await _context.SaveChangesAsync();
+            }
           
-        }  
-      
-
+        }
+        
+            public async Task<Guid> getShopByFoodId(Guid foodId)
+        {
+           Food food= await _context.Foods.FirstOrDefaultAsync(o=>o.Id==foodId);
+            if (food == null) return Guid.Empty;
+            return food.AccountID;
+        }
     }
 }

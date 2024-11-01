@@ -33,6 +33,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cart = cartList.get(position);
         holder.cartItemName.setText(cart.getFoodName());
         holder.cartItemPrice.setText(cart.getPrice()+" VND");
+        holder.quantityTextView.setText(cart.getQuantity()+" ");
         // Set other cart item details here
     }
 
@@ -44,11 +45,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         TextView cartItemName;
         TextView cartItemPrice;
-
+        TextView quantityTextView;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             cartItemName = itemView.findViewById(R.id.tvProductName);
             cartItemPrice = itemView.findViewById(R.id.productPriceTextView);
+            quantityTextView= itemView.findViewById(R.id.quantityTextView);
         }
     }
 }

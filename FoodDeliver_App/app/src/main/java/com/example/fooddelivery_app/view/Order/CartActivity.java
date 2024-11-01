@@ -45,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
             observe(this, message -> {
                 TextView totalPrice=findViewById(R.id.totalPrice);
                 if (message != null) {
+                    totalPrice.setText(message.getTotalAmount()+" VND");
                     Intent orderIntent = new Intent(this, OrderListActivity.class);
                     orderIntent.putExtra("checkoutMessage", "success");
                     startActivity(orderIntent);
