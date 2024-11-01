@@ -17,6 +17,7 @@ import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.CartAdapter;
 import com.example.fooddelivery_app.model.Order.Cart;
 import com.example.fooddelivery_app.model.Order.Order;
+import com.example.fooddelivery_app.model.Order.OrderDetails;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopListActivity;
@@ -44,9 +45,7 @@ public class CartActivity extends AppCompatActivity {
         checkout.setOnClickListener(v -> {
             cartViewModel.checkOut(userId).
             observe(this, message -> {
-                TextView totalPrice=findViewById(R.id.totalPrice);
                 if (message != null) {
-                    totalPrice.setText(message.getTotalAmount()+" VND");
                     Intent orderIntent = new Intent(this, OrderListActivity.class);
                     orderIntent.putExtra("checkoutMessage", "success");
                     startActivity(orderIntent);
@@ -57,10 +56,15 @@ public class CartActivity extends AppCompatActivity {
         });
         cartViewModel.getCartByUserId(userId).
                 observe(this, carts -> {
-            TextView totalPrice=findViewById(R.id.totalPrice);
+                    TextView totalPrice=findViewById(R.id.totalPrice);
             if (carts != null) {
-                //totalPrice.setText(finalUrl +" "+carts.size());
-                    CartAdapter cartAdapter = new CartAdapter(carts);
+                int total = 0;
+                for (Cart order : carts) {
+                    total += order.getPrice() * order.getQuantity();
+                }
+                // Set the total price to the TextView
+                totalPrice.setText("Tong thanh toan: "+total+" VND");
+                CartAdapter cartAdapter = new CartAdapter(carts,CartActivity.this,this);
                     recyclerView.setAdapter(cartAdapter);
             }else{
                 checkout.setEnabled(false);

@@ -175,8 +175,7 @@ public class FoodDetailActivity extends AppCompatActivity {
                                 Intent orderIntent = new Intent(FoodDetailActivity.this, CartActivity.class);
                                 startActivity(orderIntent);
                                 finish();
-                            }else{
-                                Toast.makeText(FoodDetailActivity.this, "add to cart failed. Please try again.", Toast.LENGTH_SHORT).show();                }
+                            }
                         });
                 if (userIdString.isEmpty()) {
                     Toast.makeText(FoodDetailActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();

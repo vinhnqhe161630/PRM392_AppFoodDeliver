@@ -51,7 +51,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                 // Set the total price to the TextView
                 totalPrice.setText("Tổng Thanh Toán :"+total+" VND");
-                OrderDetailsAdapter orderAdapter = new OrderDetailsAdapter(orders);
+                OrderDetailsAdapter orderAdapter = new OrderDetailsAdapter(orders,this);
                 recyclerView.setAdapter(orderAdapter);
 
             } else {

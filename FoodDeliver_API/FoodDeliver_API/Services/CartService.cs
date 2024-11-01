@@ -65,7 +65,7 @@ namespace FoodDeliver_API.Services
         public async Task increaseCart(Cart cart)
         {
             cart.Quantity += 1;
-            _context.Carts.Remove(cart);
+            _context.Carts.Update(cart);
             await _context.SaveChangesAsync();
 
         }
@@ -73,7 +73,7 @@ namespace FoodDeliver_API.Services
         {
            
             cart.Quantity -= 1;
-            _context.Carts.Remove(cart);
+            _context.Carts.Update(cart);
             await _context.SaveChangesAsync();
 
         }

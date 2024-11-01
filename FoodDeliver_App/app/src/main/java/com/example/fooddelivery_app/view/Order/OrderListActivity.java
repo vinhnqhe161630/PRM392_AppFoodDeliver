@@ -50,7 +50,7 @@ public class OrderListActivity extends AppCompatActivity {
                     //TextView totalPrice=findViewById(R.id.tvTotalAmount);
                     if (orders != null) {
                         //totalPrice.setText(finalUrl +" "+orders.size());
-                        OrderAdapter orderAdapter = new OrderAdapter(orders);
+                        OrderAdapter orderAdapter = new OrderAdapter(orders,this);
                         recyclerView.setAdapter(orderAdapter);
                     }else{
                         //totalPrice.setText("null");

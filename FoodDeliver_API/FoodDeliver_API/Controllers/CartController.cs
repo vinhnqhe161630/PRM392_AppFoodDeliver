@@ -68,7 +68,7 @@ namespace FoodDeliver_API.Controllers
                 return BadRequest(ex.Message);
             }
 		}
-        [HttpPost("increase")]
+        [HttpPost("increase/{cartId}")]
         public async Task<IActionResult> increaseCart(Guid cartId)
         {
             try
@@ -89,7 +89,7 @@ namespace FoodDeliver_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("decrease")]
+        [HttpPost("decrease/{cartId}")]
         public async Task<IActionResult> decreaseCart(Guid cartId)
         {
             try
