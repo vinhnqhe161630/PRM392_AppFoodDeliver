@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.OrderAdapter;
 import com.example.fooddelivery_app.adapter.OrderDetailsAdapter;
+import com.example.fooddelivery_app.model.Order.OrderDetails;
 import com.example.fooddelivery_app.view.MainActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
@@ -40,9 +41,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         orderViewModel.getOrderDetailsByUserId(orderId,this).observe(this, orders -> {
             TextView totalPrice = findViewById(R.id.totalPrice);
+
             if (orders != null) {
+                int total = 0;
+                for (OrderDetails order : orders) {
+                    total += order.getPrice() * order.getQuantity();
+                }
+
+                // Set the total price to the TextView
+                totalPrice.setText("Tổng Thanh Toán :"+total+" VND");
                 OrderDetailsAdapter orderAdapter = new OrderDetailsAdapter(orders);
                 recyclerView.setAdapter(orderAdapter);
+
             } else {
                 totalPrice.setText("null"+orderIdString);
             }

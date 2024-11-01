@@ -112,7 +112,7 @@ namespace FoodDeliver_API.Controllers
                 {
                     return NotFound();
                 }
-                
+                await _orderService.RemoveFromCarts(userid);
                 return Ok(addOrder1);
             }
             catch (Exception ex)

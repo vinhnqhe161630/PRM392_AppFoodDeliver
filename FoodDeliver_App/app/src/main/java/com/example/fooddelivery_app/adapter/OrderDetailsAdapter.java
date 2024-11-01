@@ -33,6 +33,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
         OrderDetails orderDetails = orderDetailsList.get(position);
         holder.orderDetailsItemName.setText(orderDetails.getFoodName());
         holder.orderDetailsItemPrice.setText(orderDetails.getPrice()+" VND");
+        holder.quantityTextView.setText(orderDetails.getQuantity()+" ");
 
         // Set other orderDetails item details here
     }
@@ -45,11 +46,14 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     public static class OrderDetailsViewHolder extends RecyclerView.ViewHolder {
         TextView orderDetailsItemName;
         TextView orderDetailsItemPrice;
+        TextView quantityTextView;
 
         public OrderDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
             orderDetailsItemName = itemView.findViewById(R.id.tvProductName);
             orderDetailsItemPrice= itemView.findViewById(R.id.productPriceTextView);
+            quantityTextView= itemView.findViewById(R.id.quantityTextView);
+
         }
     }
 }

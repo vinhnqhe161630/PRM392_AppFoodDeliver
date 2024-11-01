@@ -25,6 +25,7 @@ namespace FoodDeliver_API.Controllers
 		public async Task<IActionResult> createCart(AddCart addcart)
 		{
 			var cart = _mapper.Map<Cart>(addcart);
+			cart.ShopId=await _cartService.getShopByFoodId(cart.FoodId);
             await _cartService.createCart(cart);
 
             return Ok("Add ok");

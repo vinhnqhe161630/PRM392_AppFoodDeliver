@@ -88,6 +88,21 @@ namespace FoodDeliver_API.Services
 
             return accounts;
         }
+        public async Task RemoveFromCarts(Guid userId)
+        {
+            var user = await _context.Accounts.FindAsync(userId);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            var accounts = await _context.Carts
+                .Include(o => o.Account)
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
+            _context.Carts.RemoveRange(accounts);
+            _context.SaveChanges();
+        }
 
     }
 }
