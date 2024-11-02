@@ -63,7 +63,7 @@ public class CartActivity extends AppCompatActivity {
                     total += order.getPrice() * order.getQuantity();
                 }
                 // Set the total price to the TextView
-                totalPrice.setText("Tong thanh toan: "+total+" VND");
+                totalPrice.setText("Tổng thanh toán: "+total+" VND");
                 CartAdapter cartAdapter = new CartAdapter(carts,CartActivity.this,this);
                     recyclerView.setAdapter(cartAdapter);
             }else{
