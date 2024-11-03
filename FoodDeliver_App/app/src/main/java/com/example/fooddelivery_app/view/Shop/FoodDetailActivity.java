@@ -70,7 +70,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productdetail);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         // Initialize UI components
         productNameTextView = findViewById(R.id.productDetailTitle);
         productImageView = findViewById(R.id.productImageView);

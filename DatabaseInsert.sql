@@ -1,4 +1,4 @@
-﻿USE [PRM392]
+﻿USE [PRM392_1]
 GO
 INSERT [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Address], [Role], [Status]) VALUES (N'a0000002-0000-0000-0000-000000000002', N'Bob Tran', N'bob.tran@example.com', N'$2a$11$COQORlVntIAIXXyZxibQ5OnSVYClO6rgeFGhVLnzPzvX06tZd7AOO', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQitRJPJDlGWqPjTCoGf8jF1p7qVxrcVYQJYw&s', N'0987654321', N'456 Park Ave, Ho Chi Minh City', N'User', 1)
 GO
@@ -43,11 +43,11 @@ INSERT INTO [dbo].[Foods]
            ,[Status]
            ,[AccountID])
      VALUES
-           (CAST('F0000001-0000-0000-0000-000000000001' AS uniqueidentifier), 'Phở Bò', 50.00, 'Món phở truyền thống với thịt bò và gia vị', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5K-qU3OL8F6Qyxh1p1gQDcm8Z3kGWQPSX8g&s', 1, CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
-           (CAST('F0000002-0000-0000-0000-000000000002' AS uniqueidentifier), 'Bánh Mì', 20.00, 'Bánh mì kẹp thịt và rau sống', 'https://haiphu.vn/web/image/3997-8a0e40c7/nuoc-cham-banh-xeo-1.png?access_token=fded5ed2-9d50-4f66-9eef-9dc0b6cadfdf', 1, CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier)),
-           (CAST('F0000003-0000-0000-0000-000000000003' AS uniqueidentifier), 'Gỏi Cuốn', 25.00, 'Gỏi cuốn tươi mát với tôm và rau sống', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDp_f1OH9X5M6NbiKjGU3KmCnf73Sd6oobOGgFmkKcKhDx1h0OoCek3OutYkJI86VyYgA&usqp=CAU', 1, CAST('A0000006-0000-0000-0000-000000000006' AS uniqueidentifier)),
-           (CAST('F0000004-0000-0000-0000-000000000004' AS uniqueidentifier), 'Cơm Tấm', 30.00, 'Cơm tấm sườn nướng và trứng ốp la', 'https://tunaucom.net/wp-content/uploads/2019/07/cach-nau-com-tam1.png.jpg', 1, CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
-           (CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier), 'Mì Quảng', 45.00, 'Món mì quảng đặc sản miền Trung', 'https://cdn.tgdd.vn/2021/10/CookDish/huong-dan-2-cach-lam-pho-tron-chua-ngot-cuc-ngon-cuc-don-gian-avt-1200x676.jpg', 1, CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
+           (CAST('F0000001-0000-0000-0000-000000000001' AS uniqueidentifier), N'Phở Bò', 50.00, N'Món phở truyền thống với thịt bò và gia vị', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5K-qU3OL8F6Qyxh1p1gQDcm8Z3kGWQPSX8g&s', 1, CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
+           (CAST('F0000002-0000-0000-0000-000000000002' AS uniqueidentifier), N'Bánh Mì', 20.00, N'Bánh mì kẹp thịt và rau sống', 'https://haiphu.vn/web/image/3997-8a0e40c7/nuoc-cham-banh-xeo-1.png?access_token=fded5ed2-9d50-4f66-9eef-9dc0b6cadfdf', 1, CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier)),
+           (CAST('F0000003-0000-0000-0000-000000000003' AS uniqueidentifier), N'Gỏi Cuốn', 25.00, N'Gỏi cuốn tươi mát với tôm và rau sống', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDp_f1OH9X5M6NbiKjGU3KmCnf73Sd6oobOGgFmkKcKhDx1h0OoCek3OutYkJI86VyYgA&usqp=CAU', 1, CAST('A0000006-0000-0000-0000-000000000006' AS uniqueidentifier)),
+           (CAST('F0000004-0000-0000-0000-000000000004' AS uniqueidentifier), N'Cơm Tấm', 30.00, N'Cơm tấm sườn nướng và trứng ốp la', 'https://tunaucom.net/wp-content/uploads/2019/07/cach-nau-com-tam1.png.jpg', 1, CAST('A0000004-0000-0000-0000-000000000004' AS uniqueidentifier)),
+           (CAST('F0000005-0000-0000-0000-000000000005' AS uniqueidentifier), N'Mì Quảng', 45.00, N'Món mì quảng đặc sản miền Trung', 'https://cdn.tgdd.vn/2021/10/CookDish/huong-dan-2-cach-lam-pho-tron-chua-ngot-cuc-ngon-cuc-don-gian-avt-1200x676.jpg', 1, CAST('A0000005-0000-0000-0000-000000000005' AS uniqueidentifier));
 GO
 
 INSERT INTO [dbo].[Comments]
@@ -167,13 +167,13 @@ INSERT INTO [dbo].[Accounts] ([Id], [Name], [Email], [Pass], [Img], [Phone], [Ad
 GO	
 
 INSERT INTO [dbo].[Foods] ([Id], [Name], [Price], [Description], [Img], [Status], [AccountID]) VALUES 
-(CAST('F0000006-0000-0000-0000-000000000006' AS uniqueidentifier), 'Bún Chả', 45.00, 'Món bún chả Hà Nội truyền thống', 'https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/a07d335f58114c3c856afbaea73668aa.jpeg?width=1000', 1, CAST('a0000007-0000-0000-0000-000000000007' AS uniqueidentifier)),
-(CAST('F0000007-0000-0000-0000-000000000007' AS uniqueidentifier), 'Gà Rán', 50.00, 'Gà rán giòn ngon, ăn kèm với nước sốt', 'https://i.ytimg.com/vi/2DZT0ZK_kzY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDDw6-e6KohLx4J1iywuiYctt31aw', 1, CAST('a0000008-0000-0000-0000-000000000008' AS uniqueidentifier)),
-(CAST('F0000008-0000-0000-0000-000000000008' AS uniqueidentifier), 'Bánh Xèo', 35.00, 'Bánh xèo miền Trung nhân tôm thịt', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT8cBGmSlM75dT-F5gL89e3x37LLkXJS-kaw&s', 1, CAST('a0000009-0000-0000-0000-000000000009' AS uniqueidentifier)),
-(CAST('F0000009-0000-0000-0000-000000000009' AS uniqueidentifier), 'Chả Giò', 40.00, 'Chả giò chiên giòn, nhân tôm và thịt', 'https://phovihoang.vn/wp-content/uploads/2018/02/ph%E1%BB%9F-b%C3%B2.png', 1, CAST('a000000A-0000-0000-0000-00000000000A' AS uniqueidentifier)),
-(CAST('F000000A-0000-0000-0000-00000000000A' AS uniqueidentifier), 'Cá Kho Tộ', 60.00, 'Cá kho tộ, món ăn đặc trưng miền Nam', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzgzeFsNuYw5QabzfwXpcWOgqRKgRQL64rg&s', 1, CAST('a000000B-0000-0000-0000-00000000000B' AS uniqueidentifier)),
-(CAST('F000000B-0000-0000-0000-00000000000B' AS uniqueidentifier), 'Sushi', 80.00, 'Sushi Nhật Bản, tươi ngon và đẹp mắt', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9NOPW_hbpkaQYO148cqJTfY9SKF04Fl_yHA&s', 1, CAST('a000000C-0000-0000-0000-00000000000C' AS uniqueidentifier)),
-(CAST('F000000C-0000-0000-0000-00000000000C' AS uniqueidentifier), 'Bánh Pía', 25.00, 'Bánh pía đặc sản Sóc Trăng', 'https://cdn.tgdd.vn/2020/06/CookRecipe/GalleryStep/thanh-pham-284.jpg', 1, CAST('a000000D-0000-0000-0000-00000000000D' AS uniqueidentifier));
+(CAST('F0000006-0000-0000-0000-000000000006' AS uniqueidentifier), N'Bún Chả', 45.00, N'Món bún chả Hà Nội truyền thống', 'https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/a07d335f58114c3c856afbaea73668aa.jpeg?width=1000', 1, CAST('a0000007-0000-0000-0000-000000000007' AS uniqueidentifier)),
+(CAST('F0000007-0000-0000-0000-000000000007' AS uniqueidentifier), N'Gà Rán', 50.00, N'Gà rán giòn ngon, ăn kèm với nước sốt', 'https://i.ytimg.com/vi/2DZT0ZK_kzY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDDw6-e6KohLx4J1iywuiYctt31aw', 1, CAST('a0000008-0000-0000-0000-000000000008' AS uniqueidentifier)),
+(CAST('F0000008-0000-0000-0000-000000000008' AS uniqueidentifier), N'Bánh Xèo', 35.00, N'Bánh xèo miền Trung nhân tôm thịt', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT8cBGmSlM75dT-F5gL89e3x37LLkXJS-kaw&s', 1, CAST('a0000009-0000-0000-0000-000000000009' AS uniqueidentifier)),
+(CAST('F0000009-0000-0000-0000-000000000009' AS uniqueidentifier), N'Chả Giò', 40.00, N'Chả giò chiên giòn, nhân tôm và thịt', 'https://phovihoang.vn/wp-content/uploads/2018/02/ph%E1%BB%9F-b%C3%B2.png', 1, CAST('a000000A-0000-0000-0000-00000000000A' AS uniqueidentifier)),
+(CAST('F000000A-0000-0000-0000-00000000000A' AS uniqueidentifier), N'Cá Kho Tộ', 60.00, N'Cá kho tộ, món ăn đặc trưng miền Nam', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzgzeFsNuYw5QabzfwXpcWOgqRKgRQL64rg&s', 1, CAST('a000000B-0000-0000-0000-00000000000B' AS uniqueidentifier)),
+(CAST('F000000B-0000-0000-0000-00000000000B' AS uniqueidentifier), N'Sushi', 80.00, N'Sushi Nhật Bản, tươi ngon và đẹp mắt', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9NOPW_hbpkaQYO148cqJTfY9SKF04Fl_yHA&s', 1, CAST('a000000C-0000-0000-0000-00000000000C' AS uniqueidentifier)),
+(CAST('F000000C-0000-0000-0000-00000000000C' AS uniqueidentifier), N'Bánh Pía', 25.00, N'Bánh pía đặc sản Sóc Trăng', 'https://cdn.tgdd.vn/2020/06/CookRecipe/GalleryStep/thanh-pham-284.jpg', 1, CAST('a000000D-0000-0000-0000-00000000000D' AS uniqueidentifier));
 GO
 
 INSERT INTO [dbo].[Comments] ([Id], [Content], [Vote], [CommentDate], [UserID], [FoodID]) VALUES 
