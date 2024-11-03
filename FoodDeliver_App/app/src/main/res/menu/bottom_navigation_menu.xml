@@ -2,9 +2,9 @@
 
 
     <item
-        android:id="@+id/navigation_shop"
-        android:title="Shop"
-        android:icon="@drawable/shopping_bag" />
+        android:id="@+id/navigation_blog"
+        android:title="Blog"
+        android:icon="@drawable/blogger" />
 
     <item
         android:id="@+id/navigation_More"
@@ -26,4 +26,5 @@
         android:id="@+id/navigation_Rank"
         android:title="Rank"
         android:icon="@drawable/ranking" />
+
 </menu>

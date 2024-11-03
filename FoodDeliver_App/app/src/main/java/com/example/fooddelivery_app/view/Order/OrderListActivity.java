@@ -19,6 +19,7 @@ import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.adapter.OrderAdapter;
 import com.example.fooddelivery_app.model.Order.Order;
 import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Shop.BlogActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopListActivity;
 import com.example.fooddelivery_app.view.Shop.ShopVotedActivity;
@@ -70,9 +71,9 @@ public class OrderListActivity extends AppCompatActivity {
                     startActivity(orderIntent);
                     finish();
                     return true;
-                case R.id.navigation_shop:
+                case R.id.navigation_blog:
                     // Open CartActivity when Cart menu item is clicked
-                    Intent shopIntent = new Intent(this, ShopListActivity.class);
+                    Intent shopIntent = new Intent(this, BlogActivity.class);
                     startActivity(shopIntent);
                     finish();
                     return true;

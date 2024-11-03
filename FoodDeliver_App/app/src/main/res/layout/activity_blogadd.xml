@@ -180,7 +180,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="660dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintTop_toBottomOf="@id/relativeLayout">
 
@@ -198,116 +198,92 @@
                     android:orientation="vertical">
 
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="10dp">
+                    <TextView
+                        android:id="@+id/tvCreateBlogTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Create Your Blog"
+                        android:layout_marginLeft="115dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="20dp"/>
 
-                        <ImageView
-                            android:id="@+id/banner_imageview"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:padding="4dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/banner_food" />
-
-                    </androidx.cardview.widget.CardView>
-
-
-                    <LinearLayout
+                    <!-- Blog Title Input -->
+                    <EditText
+                        android:id="@+id/etBlogTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:hint="Enter Blog Title"
+                        android:padding="10dp"
+                        android:textSize="16sp"
+                        android:background="@drawable/edittext_background"
+                        android:layout_below="@id/tvCreateBlogTitle"
+                        android:layout_marginTop="16dp"/>
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20sp"
-                            android:orientation="horizontal">
+                    <!-- Blog Content Input -->
+                    <EditText
+                        android:id="@+id/etBlogContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:hint="Enter Blog Content"
+                        android:padding="10dp"
+                        android:textSize="16sp"
+                        android:background="@drawable/edittext_background"
+                        android:layout_below="@id/etBlogTitle"
+                        android:layout_marginTop="16dp"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:minLines="5"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="8dp"
-                                android:text="Popular Shop"
-                                android:textColor="@color/black"
-                                android:textStyle="bold">
-
-                            </TextView>
-
-                            <TextView
-                                android:id="@+id/see1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginRight="15dp"
-                                android:padding="8dp"
-                                android:text="See All"
-                                android:textColor="@color/black"
-                                android:textStyle="bold">
-
-                            </TextView>
-
-                        </RelativeLayout>
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/productRecyclerView2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="16dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-                    </LinearLayout>
-
-
+                    <!-- Image Upload Section -->
                     <LinearLayout
+                        android:id="@+id/imageUploadSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_below="@id/etBlogContent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:text="Add Image:"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="8dp"/>
 
-                            <TextView
-                                android:id="@+id/textViewPopularBrands"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="8dp"
-                                android:text="Popular Food"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"></TextView>
-
-                            <TextView
-                                android:id="@+id/see2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginRight="15dp"
-                                android:padding="8dp"
-                                android:text="See All"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"></TextView>
-
-                        </RelativeLayout>
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-
-                            android:id="@+id/productRecyclerView3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="16dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
+                        <Button
+                            android:id="@+id/btnUploadImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Choose Image"
+                            android:textSize="14sp"
+                            android:padding="8dp"/>
                     </LinearLayout>
+
+                    <!-- Placeholder Image Preview -->
+                    <ImageView
+                        android:id="@+id/ivBlogImagePreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/imageUploadSection"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"/>
+
+                    <!-- Save Blog Button -->
+                    <Button
+                        android:id="@+id/btnSaveBlog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save Blog"
+                        android:layout_margin="16dp"
+                        android:textColor="@android:color/white"
+                        android:layout_below="@id/ivBlogImagePreview"
+                        android:layout_marginTop="20dp"/>
 
 
                 </LinearLayout>

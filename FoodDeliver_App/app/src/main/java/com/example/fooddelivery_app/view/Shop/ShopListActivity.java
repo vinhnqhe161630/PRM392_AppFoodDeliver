@@ -58,7 +58,7 @@ public class ShopListActivity extends AppCompatActivity {
         });
 //
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_cart:
@@ -73,9 +73,9 @@ public class ShopListActivity extends AppCompatActivity {
                     startActivity(orderIntent);
                     finish();
                     return true;
-                case R.id.navigation_shop:
+                case R.id.navigation_blog:
                     // Open CartActivity when Cart menu item is clicked
-                    Intent shopIntent = new Intent(this, ShopListActivity.class);
+                    Intent shopIntent = new Intent(this, BlogActivity.class);
                     startActivity(shopIntent);
                     finish();
                     return true;

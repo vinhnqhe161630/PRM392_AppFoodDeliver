@@ -116,9 +116,9 @@ public class FoodDetailActivity extends AppCompatActivity {
                     startActivity(orderIntent);
                     finish();
                     return true;
-                case R.id.navigation_shop:
+                case R.id.navigation_blog:
                     // Open CartActivity when Cart menu item is clicked
-                    Intent shopIntent = new Intent(this, ShopListActivity.class);
+                    Intent shopIntent = new Intent(this, BlogActivity.class);
                     startActivity(shopIntent);
                     finish();
                     return true;

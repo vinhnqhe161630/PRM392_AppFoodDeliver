@@ -26,7 +26,7 @@ public class MainViewModel extends ViewModel {
         foodRepository = new FoodRepository();
 
 
-        allShops = shopRepository.getAllShops();
+        allShops = shopRepository.getTop5Shops();
         allFoods = foodRepository.getFoods();
 
     }
@@ -41,7 +41,7 @@ public class MainViewModel extends ViewModel {
 
     public void refreshShops() {
         // Re-fetch the data from the repository
-        MutableLiveData<List<Shop>> refreshedShops = shopRepository.getAllShops();
+        MutableLiveData<List<Shop>> refreshedShops = shopRepository.getTop5Shops();
 
         refreshedShops.observeForever(updatedShops -> {
             allShops.setValue(updatedShops);

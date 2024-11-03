@@ -3,6 +3,7 @@ package com.example.fooddelivery_app.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.fooddelivery_app.adapter.ShopAdapter;
 import com.example.fooddelivery_app.view.Auth.LoginActivity;
 import com.example.fooddelivery_app.view.Order.CartActivity;
 import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.example.fooddelivery_app.view.Shop.BlogActivity;
 import com.example.fooddelivery_app.view.Shop.FoodDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopDetailActivity;
 import com.example.fooddelivery_app.view.Shop.ShopListActivity;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+    private TextView see1,see2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        see1=findViewById(R.id.see1);
+        see1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ShopListActivity.class);
+            startActivity(intent);
+        });
+        see2=findViewById(R.id.see2);
+        see2.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ShopListActivity.class);
+            startActivity(intent);
+        });
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         // Set a listener for menu item clicks
@@ -102,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(orderIntent);
                     finish();
                     return true;
-                case R.id.navigation_shop:
+                case R.id.navigation_blog:
                     // Open CartActivity when Cart menu item is clicked
-                    Intent shopIntent = new Intent(this, ShopListActivity.class);
+                    Intent shopIntent = new Intent(this, BlogActivity.class);
                     startActivity(shopIntent);
                     finish();
                     return true;
