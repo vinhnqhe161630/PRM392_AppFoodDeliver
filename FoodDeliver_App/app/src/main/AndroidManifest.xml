@@ -63,7 +63,8 @@
         </intent-filter></activity>
         <activity android:name=".view.Shop.FoodDetailActivity"  android:exported="true" ></activity>
 
-
+        <activity android:name=".view.Shop.BlogActivity"  android:exported="true" />
+        <activity android:name=".view.Shop.CreateBlogActivity"  android:exported="true" />
     </application>
 
 </manifest>
