@@ -52,7 +52,7 @@ public class ShopDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopdetail);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_shop);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         recyclerView = findViewById(R.id.productRecyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         TextView filterLowToHigh = findViewById(R.id.filter_low_to_high);
