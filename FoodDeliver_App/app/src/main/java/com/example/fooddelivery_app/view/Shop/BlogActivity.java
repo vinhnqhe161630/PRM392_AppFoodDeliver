@@ -114,6 +114,7 @@ public class BlogActivity extends AppCompatActivity {
         BlogAdapter adapter = new BlogAdapter(this, blogList);
         recyclerView.setAdapter(adapter);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_blog);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_cart:

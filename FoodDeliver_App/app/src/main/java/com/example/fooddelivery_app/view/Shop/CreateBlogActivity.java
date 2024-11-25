@@ -18,6 +18,10 @@ import androidx.loader.content.CursorLoader;
 
 import com.example.fooddelivery_app.R;
 import com.example.fooddelivery_app.model.Comment.Blog;
+import com.example.fooddelivery_app.view.MainActivity;
+import com.example.fooddelivery_app.view.Order.CartActivity;
+import com.example.fooddelivery_app.view.Order.OrderListActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Date;
 
@@ -51,6 +55,43 @@ public class CreateBlogActivity extends AppCompatActivity {
                 saveBlog();
             }
         });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_blog);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_cart:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent cartIntent = new Intent(this, CartActivity.class);
+                    startActivity(cartIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_More:
+                    // Open OrderActivity when Order menu item is clicked
+                    Intent orderIntent = new Intent(this, OrderListActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_blog:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent shopIntent = new Intent(this, BlogActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                    return true;
+                case R.id.navigation_Rank:
+                    // Open CartActivity when Cart menu item is clicked
+                    Intent rankIntent = new Intent(this, ShopVotedActivity.class);
+                    startActivity(rankIntent);
+                    finish();
+                    return true;
+                default:
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                    return true;
+                // Handle other menu items here
+
+            }
+        });
     }
 
     private void openFileChooser() {
@@ -66,7 +107,6 @@ public class CreateBlogActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             ivBlogImagePreview.setImageURI(imageUri);
-            ivBlogImagePreview.setVisibility(View.VISIBLE);
             String imagePath = getRealPathFromURI(this, imageUri);
         }
     }

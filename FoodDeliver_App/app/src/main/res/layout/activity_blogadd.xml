@@ -187,13 +187,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="660dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/home_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="660dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
@@ -202,40 +202,40 @@
                         android:id="@+id/tvCreateBlogTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Create Your Blog"
-                        android:layout_marginLeft="115dp"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="20dp"/>
+                        android:layout_marginLeft="115dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Create Your Blog"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
                     <!-- Blog Title Input -->
                     <EditText
                         android:id="@+id/etBlogTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tvCreateBlogTitle"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/edittext_background"
                         android:hint="Enter Blog Title"
                         android:padding="10dp"
-                        android:textSize="16sp"
-                        android:background="@drawable/edittext_background"
-                        android:layout_below="@id/tvCreateBlogTitle"
-                        android:layout_marginTop="16dp"/>
+                        android:textSize="16sp" />
 
                     <!-- Blog Content Input -->
                     <EditText
                         android:id="@+id/etBlogContent"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:hint="Enter Blog Content"
-                        android:padding="10dp"
-                        android:textSize="16sp"
-                        android:background="@drawable/edittext_background"
                         android:layout_below="@id/etBlogTitle"
                         android:layout_marginTop="16dp"
+                        android:background="@drawable/edittext_background"
                         android:gravity="start|top"
+                        android:hint="Enter Blog Content"
                         android:inputType="textMultiLine"
-                        android:minLines="5"/>
+                        android:minLines="5"
+                        android:padding="10dp"
+                        android:textSize="16sp" />
 
                     <!-- Image Upload Section -->
                     <LinearLayout
@@ -244,24 +244,24 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/etBlogContent"
                         android:layout_marginTop="16dp"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Add Image:"
-                            android:textSize="16sp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="8dp"/>
+                            android:layout_marginEnd="8dp"
+                            android:text="Add Image:"
+                            android:textSize="16sp" />
 
                         <Button
                             android:id="@+id/btnUploadImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="8dp"
                             android:text="Choose Image"
-                            android:textSize="14sp"
-                            android:padding="8dp"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <!-- Placeholder Image Preview -->
@@ -272,18 +272,18 @@
                         android:layout_below="@id/imageUploadSection"
                         android:layout_marginTop="10dp"
                         android:scaleType="centerCrop"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <!-- Save Blog Button -->
                     <Button
                         android:id="@+id/btnSaveBlog"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Save Blog"
-                        android:layout_margin="16dp"
-                        android:textColor="@android:color/white"
                         android:layout_below="@id/ivBlogImagePreview"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_margin="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Save Blog"
+                        android:textColor="@android:color/white" />
 
 
                 </LinearLayout>
